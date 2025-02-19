@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Mealio</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //Headings
+    <string name="heading_one">Quick &amp; Easy Payments</string>
+    <string name="heading_two">Instant Notifications</string>
+    <string name="heading_three">Cashless Payment</string>
+    <string name="heading_fourth">Pay Anywhere</string>
+
+    //Description
+    <string name="desc_one">Grow your Business By Accepting Card Payments with The New Card Reader</string>
+    <string name="desc_two">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="desc_three">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="desc_fourth">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="plan_explore_enjoy_your_favorite_meals"><![CDATA[Plan, Explore & Enjoy Your Favorite Meals!]]></string>
+    <string name="a_delicious_journey_of_flavors">A Delicious Journey of Flavors!</string>
+    <string name="discover_your_meal_s_ingredients_step_by_step_preparation_and_watch_the_video_effortlessly">Discover your meal’s ingredients, step-by-step preparation, and watch the video effortlessly!</string>
+    <string name="your_meals_your_way">Your Meals, Your Way!</string>
+    <string name="organize_your_weekly_schedule_with_a_single_tap_and_stay_prepared">" Organize your weekly schedule with a single tap and stay prepared!"</string>
+    <string name="start">Start</string>
+    <string name="next">Next</string>
+
+</resources>
