@@ -21,5 +21,12 @@
     <string name="organize_your_weekly_schedule_with_a_single_tap_and_stay_prepared">" Organize your weekly schedule with a single tap and stay prepared!"</string>
     <string name="start">Start</string>
     <string name="next">Next</string>
+    <string name="create_account">Create Account</string>
+    <string name="login">Login</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_with_google">Sign up with Google</string>
 
 </resources>

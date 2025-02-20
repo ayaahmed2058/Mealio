@@ -16,11 +16,12 @@
     <color name="inactive">#C4C4C4</color>
     <color name="active">#50C2C9</color>
     
-    <color name="colorPrimary">#FF0000</color>
-    <color name="colorPrimaryDark">#8F3300</color>
-    <color name="colorAccent">#FF5252</color>
+    <color name="colorPrimary">#2ac846</color>
+    <color name="colorPrimaryDark">#219f37</color>
+    <color name="colorAccent">#99ce66</color>
     <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#757575</color>
     <color name="colorBackground">#FFFFFFFF</color>
     <color name="colorOnboardingIndicatorInactive">#72BCF7</color>
+    <color name="edittext_bg">#99ce66</color>
 </resources>

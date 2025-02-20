@@ -73,12 +73,12 @@ public class MainActivity extends AppCompatActivity {
         OnboardingItem mealDetails = new OnboardingItem();
         mealDetails.setTitle(getString(R.string.a_delicious_journey_of_flavors));
         mealDetails.setDescription(getString(R.string.discover_your_meal_s_ingredients_step_by_step_preparation_and_watch_the_video_effortlessly));
-        mealDetails.setImage(R.drawable.onboardingimg1);
+        mealDetails.setImage(R.drawable.onboarding_img1);
 
         OnboardingItem mealPlanning = new OnboardingItem();
         mealPlanning.setTitle(getString(R.string.your_meals_your_way));
         mealPlanning.setDescription(getString(R.string.organize_your_weekly_schedule_with_a_single_tap_and_stay_prepared));
-        mealPlanning.setImage(R.drawable.onboardingimg2);
+        mealPlanning.setImage(R.drawable.onboarding_img2);
 
         onboardingItems.add(projectName);
         onboardingItems.add(mealPlanning);
