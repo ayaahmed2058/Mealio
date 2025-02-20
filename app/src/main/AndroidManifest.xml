@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Mealio"
         tools:targetApi="31">
         <activity
-            android:name=".view.HomeActivity"
+            android:name=".view.credentialScreen.AuthenticationActivity"
             android:exported="false" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.onboardingScreen.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

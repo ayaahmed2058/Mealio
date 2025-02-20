@@ -1,4 +1,4 @@
-package com.example.mealio.view;
+package com.example.mealio.view.onboardingScreen;
 
 
 import android.annotation.SuppressLint;
@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.mealio.R;
+import com.example.mealio.view.credentialScreen.AuthenticationActivity;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem() + 1 < onboardingAdapter.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
             }else {
-                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                startActivity(new Intent(getApplicationContext(), AuthenticationActivity.class));
                 finish();
             }
         });

@@ -1,4 +1,4 @@
-package com.example.mealio.view;
+package com.example.mealio.view.onboardingScreen;
 
 public class OnboardingItem {
 

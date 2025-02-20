@@ -28,5 +28,8 @@
     <string name="password">Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_with_google">Sign up with Google</string>
+    <string name="or_sign_with">Or Sign Up With</string>
+    <string name="login_with_google">Login With Google</string>
+    <string name="or_login_with">or Login With</string>
 
 </resources>
