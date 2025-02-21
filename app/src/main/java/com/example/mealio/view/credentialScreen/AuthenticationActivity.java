@@ -22,15 +22,17 @@ public class AuthenticationActivity extends AppCompatActivity {
     private boolean isSignUp = false;
     private FrameLayout container;
     private EditText emailField, passwordField, confirmPasswordField, usernameField;
-    private Button btnAuth;
+    private Button btnAuth ,btnGoogleSignIn ;
     private AuthManager authManager;
+
+    private static final int RC_SIGN_IN = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
-        authManager = new AuthManager();
+        authManager = new AuthManager(this);
         container = findViewById(R.id.container);
 
         loginScene = Scene.getSceneForLayout(container, R.layout.login_scene, this);
@@ -68,10 +70,10 @@ public class AuthenticationActivity extends AppCompatActivity {
             emailField = container.findViewById(R.id.et_email);
             passwordField = container.findViewById(R.id.et_password);
             btnAuth = container.findViewById(R.id.btnAuth);
+            btnGoogleSignIn = container.findViewById(R.id.btn_google_signup);
 
-            if (btnAuth != null) {
-                btnAuth.setOnClickListener(v -> handleLogin());
-            }
+            btnAuth.setOnClickListener(v -> handleLogin());
+            btnGoogleSignIn.setOnClickListener(v -> authManager.signInWithGoogle(this));
         });
     }
 
@@ -82,10 +84,12 @@ public class AuthenticationActivity extends AppCompatActivity {
             passwordField = container.findViewById(R.id.et_password);
             confirmPasswordField = container.findViewById(R.id.et_confirmPassword);
             btnAuth = container.findViewById(R.id.btnAuth);
+            btnGoogleSignIn = container.findViewById(R.id.btn_google_signup);
 
-            if (btnAuth != null) {
-                btnAuth.setOnClickListener(v -> handleSignUp());
-            }
+
+            btnAuth.setOnClickListener(v -> handleSignUp());
+            btnGoogleSignIn.setOnClickListener(v -> authManager.signInWithGoogle(this));
+
         });
     }
 
@@ -130,6 +134,22 @@ public class AuthenticationActivity extends AppCompatActivity {
             @Override
             public void onFailure(String error) {
                 Snackbar.make(emailField,error, Snackbar.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        authManager.handleGoogleSignInResult(data, new AuthManager.AuthenticationCallback() {
+            @Override
+            public void onSuccess(String message) {
+                startActivity(new Intent(AuthenticationActivity.this, MainScreenActivity.class));
+            }
+
+            @Override
+            public void onFailure(String error) {
+                Snackbar.make(container, error, Snackbar.LENGTH_LONG).show();
             }
         });
     }

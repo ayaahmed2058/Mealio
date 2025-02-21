@@ -12,7 +12,20 @@
           "package_name": "com.example.mealio"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "140999529852-63sp4pe9jdiatgq27aa6e73tpt5i1f61.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mealio",
+            "certificate_hash": "0e6e0e55e0cd7cd273e76f860bac41ae8fb0da89"
+          }
+        },
+        {
+          "client_id": "140999529852-52naf6ea7m3olbfeadi9u6d0t4m846bm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDzoaqVP29nvSRR4NIM36HHMqpPFM-fswY"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140999529852-52naf6ea7m3olbfeadi9u6d0t4m846bm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
