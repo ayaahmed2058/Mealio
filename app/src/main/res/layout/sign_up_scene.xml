@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".view.credentialScreen.SignUpFragment">
+    android:background="@color/white">
     <ImageView
         android:id="@+id/bg_image"
         android:layout_width="0dp"
@@ -97,7 +96,7 @@
                 android:id="@+id/et_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:autofillHints="emailAddress"
                 android:background="@drawable/edittext_bg"
                 android:drawableStart="@drawable/email"
@@ -113,7 +112,7 @@
                 android:id="@+id/et_password"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:autofillHints="password"
                 android:background="@drawable/edittext_bg"
                 android:drawableStart="@drawable/padlock"
@@ -125,12 +124,28 @@
                 app:layout_constraintStart_toStartOf="@+id/et_email"
                 app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
+            <EditText
+                android:id="@+id/et_confirmPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:autofillHints="confirm password"
+                android:background="@drawable/edittext_bg"
+                android:drawableStart="@drawable/padlock"
+                android:drawablePadding="10dp"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/et_password"
+                app:layout_constraintStart_toStartOf="@+id/et_password"
+                app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
             <Button
-                android:id="@+id/btn_sign_up"
+                android:id="@+id/btnAuth"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/colorPrimaryDark"
@@ -141,7 +156,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.444"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_password" />
+                app:layout_constraintTop_toBottomOf="@+id/et_confirmPassword" />
             <View
                 android:id="@+id/view2"
                 android:layout_width="120dp"
@@ -169,7 +184,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/btn_google_signup"
                 app:layout_constraintEnd_toStartOf="@+id/view3"
                 app:layout_constraintStart_toEndOf="@+id/view2"
-                app:layout_constraintTop_toBottomOf="@+id/btn_sign_up" />
+                app:layout_constraintTop_toBottomOf="@+id/btnAuth" />
             <View
                 android:id="@+id/view3"
                 android:layout_width="120dp"

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Mealio"
         tools:targetApi="31">
         <activity
+            android:name=".view.MainScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.credentialScreen.AuthenticationActivity"
             android:exported="false" />
         <activity
