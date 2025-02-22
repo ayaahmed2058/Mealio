@@ -1,5 +1,6 @@
 package com.example.mealio.view.mainScreen.Home;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,31 +18,29 @@ import com.example.mealio.R;
 import com.example.mealio.model.MealRepository;
 import com.example.mealio.model.Network.MealRemoteDataSourceImp;
 import com.example.mealio.model.pojo.AreaListItem;
+import com.example.mealio.model.pojo.Category;
 import com.example.mealio.model.pojo.MealSummary;
+import com.example.mealio.presenter.AllAreasPresenter;
+import com.example.mealio.presenter.AllCategoryPresenter;
 import com.example.mealio.presenter.RandomMealPresenter;
 import com.example.mealio.view.mainScreen.AllMealView;
 import com.example.mealio.view.mainScreen.Home.allAreas.AreaView;
 import com.example.mealio.view.mainScreen.Home.allAreas.AreasAdapter;
+import com.example.mealio.view.mainScreen.Home.allCategoriesView.CategoriesAdapter;
+import com.example.mealio.view.mainScreen.Home.allCategoriesView.CategoryView;
 import com.example.mealio.view.mainScreen.Home.randomMeal.RandomMealAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class HomeFragment extends Fragment implements AllMealView, AreaView {
+@SuppressLint("NotifyDataSetChanged")
+public class HomeFragment extends Fragment implements AllMealView, AreaView, CategoryView {
 
     private RandomMealAdapter randomMealAdapter;
     private AreasAdapter areasAdapter;
-    private static final String TAG = "RandomMeal";
-    private RandomMealPresenter randomMealPresenter;
-    private RecyclerView randomRecyclerView, areasRecyclerView;
-    private LinearLayoutManager linearLayoutManager;
+    private CategoriesAdapter categoriesAdapter;
 
-    public HomeFragment() {
-
-
-    }
-
+    public HomeFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,25 +58,35 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        randomRecyclerView = view.findViewById(R.id.recycler_randomMeal);
-        areasRecyclerView = view.findViewById(R.id.recycler_Areas);
+        RecyclerView randomRecyclerView = view.findViewById(R.id.recycler_randomMeal);
+        RecyclerView areasRecyclerView = view.findViewById(R.id.recycler_Areas);
+        RecyclerView categoryRecyclerView = view.findViewById(R.id.recycler_categories);
 
-        linearLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         randomMealAdapter = new RandomMealAdapter(getActivity(), new ArrayList<>() );
         areasAdapter = new AreasAdapter(getActivity(), new ArrayList<>() );
+        categoriesAdapter = new CategoriesAdapter(getActivity(), new ArrayList<>());
 
-        randomMealPresenter  = new RandomMealPresenter(this , this,
+        RandomMealPresenter randomMealPresenter = new RandomMealPresenter(this,
                 MealRepository.getInstance(MealRemoteDataSourceImp.getInstance()));
+
+        AllAreasPresenter allAreasPresenter = new AllAreasPresenter(this,
+                MealRepository.getInstance(MealRemoteDataSourceImp.getInstance()));
+
+        AllCategoryPresenter allCategoryPresenter = new AllCategoryPresenter(this,
+                MealRepository.getInstance(MealRemoteDataSourceImp.getInstance()));
+
 
         randomRecyclerView.setLayoutManager(linearLayoutManager);
         randomRecyclerView.setAdapter(randomMealAdapter);
-
         areasRecyclerView.setAdapter(areasAdapter);
+        categoryRecyclerView.setAdapter(categoriesAdapter);
 
         randomMealPresenter.getRandomMeal();
-        randomMealPresenter.getAllAreas();
+        allAreasPresenter.getAllAreas();
+        allCategoryPresenter.getAllCategories();
     }
 
     @Override
@@ -90,6 +99,12 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView {
     public void setAreas(List<AreaListItem> areas) {
         areasAdapter.updateData(areas);
         areasAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void setCategories(List<Category> categories) {
+        categoriesAdapter.updateData(categories);
+        categoriesAdapter.notifyDataSetChanged();
     }
 
     @Override

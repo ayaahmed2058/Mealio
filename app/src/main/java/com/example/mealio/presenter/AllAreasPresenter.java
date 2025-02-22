@@ -1,6 +1,5 @@
 package com.example.mealio.presenter;
 
-
 import com.example.mealio.model.MealRepository;
 import com.example.mealio.model.Network.AreaNetworkCallBack;
 import com.example.mealio.model.Network.MealNetworkCallBack;
@@ -11,29 +10,29 @@ import com.example.mealio.view.mainScreen.Home.allAreas.AreaView;
 
 import java.util.List;
 
-public class RandomMealPresenter implements MealNetworkCallBack{
+public class AllAreasPresenter implements AreaNetworkCallBack {
 
-    private AllMealView allMealView;
     private MealRepository mealRepository;
+    private AreaView areaView;
 
-
-    public RandomMealPresenter(AllMealView allMealView, MealRepository mealRepository){
-        this.allMealView = allMealView;
+    public AllAreasPresenter(AreaView areaView, MealRepository mealRepository){
+        this.areaView = areaView;
         this.mealRepository = mealRepository;
     }
 
-    public void getRandomMeal(){
-        mealRepository.getRandomMeal(this);
+
+    public void getAllAreas (){
+        mealRepository.getALLAreas(this);
     }
 
 
     @Override
-    public void onSuccessResult(List<MealSummary> meals) {
-        allMealView.setMeals(meals);
+    public void onSuccessResultForArea(List<AreaListItem> areaListItems) {
+        areaView.setAreas(areaListItems);
     }
 
     @Override
     public void onFailureResult(String errorMessage) {
-        allMealView.setErrorMessage(errorMessage);
+        areaView.setErrorMessage(errorMessage);
     }
 }

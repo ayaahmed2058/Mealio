@@ -5,7 +5,7 @@ import com.example.mealio.model.pojo.MealSummary;
 
 import java.util.List;
 
-public interface NetworkCallBack {
+public interface MealNetworkCallBack {
 
     void onSuccessResult (List<MealSummary> mealSummaries);
     void onFailureResult (String errorMessage);

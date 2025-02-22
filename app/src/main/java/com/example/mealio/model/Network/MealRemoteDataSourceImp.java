@@ -3,7 +3,7 @@ package com.example.mealio.model.Network;
 import android.util.Log;
 
 import com.example.mealio.model.pojo.AreaListResponse;
-import com.example.mealio.model.pojo.CategoryListResponse;
+import com.example.mealio.model.pojo.CategoriesResponse;
 import com.example.mealio.model.pojo.MealsResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +34,7 @@ public class MealRemoteDataSourceImp implements MealRemoteDataSourceInterface {
 
 
     @Override
-    public void makeNetworkCallBackForRandomMeal (NetworkCallBack networkCallBack){
+    public void makeNetworkCallBackForRandomMeal (MealNetworkCallBack mealNetworkCallBack){
 
         Call<MealsResponse> call = mealService.getRandomMeal();
         call.enqueue(new Callback<MealsResponse>() {
@@ -42,13 +42,13 @@ public class MealRemoteDataSourceImp implements MealRemoteDataSourceInterface {
             public void onResponse(Call<MealsResponse> call, Response<MealsResponse> response) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "onResponse:CallBack" + response.raw() + response.body());
-                    networkCallBack.onSuccessResult(response.body().getMeals());
+                    mealNetworkCallBack.onSuccessResult(response.body().getMeals());
                 }
             }
             @Override
             public void onFailure(Call<MealsResponse> call, Throwable t) {
                 Log.i(TAG, "onFailure:CallBack");
-                networkCallBack.onFailureResult(t.getMessage());
+                mealNetworkCallBack.onFailureResult(t.getMessage());
                 t.printStackTrace();
             }
         });
@@ -79,26 +79,24 @@ public class MealRemoteDataSourceImp implements MealRemoteDataSourceInterface {
 
     @Override
     public void makeNetworkCallBackForAllCategories(CategoryNetworkCallBack categoryNetworkCallBack) {
-        Call<CategoryListResponse> call = mealService.getCategoriesList();
-        call.enqueue(new Callback<CategoryListResponse>() {
+        Call<CategoriesResponse> call = mealService.getAllCategories();
+        call.enqueue(new Callback<CategoriesResponse>() {
             @Override
-            public void onResponse(Call<CategoryListResponse> call, Response<CategoryListResponse> response) {
+            public void onResponse(Call<CategoriesResponse> call, Response<CategoriesResponse> response) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "onResponse:CallBack" + response.raw() + response.body());
-                    categoryNetworkCallBack.onSuccessResult(response.body().getMeals());
+                    categoryNetworkCallBack.onSuccessResultForCategories(response.body().getCategories());
                 }
             }
 
             @Override
-            public void onFailure(Call<CategoryListResponse> call, Throwable t) {
-
+            public void onFailure(Call<CategoriesResponse> call, Throwable t) {
+                Log.i(TAG, "onFailure:CallBack");
+                categoryNetworkCallBack.onFailureResult(t.getMessage());
+                t.printStackTrace();
             }
         });
 
     }
 
-    @Override
-    public void makeNetworkCallBackForAllIngredients(NetworkCallBack networkCallBack) {
-
-    }
 }
