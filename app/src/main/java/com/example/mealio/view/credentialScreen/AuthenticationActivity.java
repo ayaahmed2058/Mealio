@@ -24,8 +24,8 @@ public class AuthenticationActivity extends AppCompatActivity {
     private EditText emailField, passwordField, confirmPasswordField, usernameField;
     private Button btnAuth ,btnGoogleSignIn ;
     private AuthManager authManager;
-
     private static final int RC_SIGN_IN = 100;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class AuthenticationActivity extends AppCompatActivity {
             btnGoogleSignIn = container.findViewById(R.id.btn_google_signup);
 
             btnAuth.setOnClickListener(v -> handleLogin());
-            btnGoogleSignIn.setOnClickListener(v -> authManager.signInWithGoogle(this));
+            btnGoogleSignIn.setOnClickListener(v -> signInWithGoogle());
         });
     }
 
@@ -88,10 +88,16 @@ public class AuthenticationActivity extends AppCompatActivity {
 
 
             btnAuth.setOnClickListener(v -> handleSignUp());
-            btnGoogleSignIn.setOnClickListener(v -> authManager.signInWithGoogle(this));
+            btnGoogleSignIn.setOnClickListener(v -> signInWithGoogle());
 
         });
     }
+
+    private void signInWithGoogle() {
+        Intent signInIntent = authManager.getGoogleSignInClient().getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
 
     private void handleLogin() {
         String email = emailField.getText().toString().trim();
@@ -127,8 +133,9 @@ public class AuthenticationActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String message) {
                 Snackbar.make(emailField,message, Snackbar.LENGTH_LONG).show();
-                Intent intent = new Intent(AuthenticationActivity.this, MainScreenActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(AuthenticationActivity.this, MainScreenActivity.class);
+//                startActivity(intent);
+                switchScene();
             }
 
             @Override
@@ -138,20 +145,20 @@ public class AuthenticationActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        authManager.handleGoogleSignInResult(data, new AuthManager.AuthenticationCallback() {
-            @Override
-            public void onSuccess(String message) {
-                startActivity(new Intent(AuthenticationActivity.this, MainScreenActivity.class));
-            }
-
-            @Override
-            public void onFailure(String error) {
-                Snackbar.make(container, error, Snackbar.LENGTH_LONG).show();
-            }
-        });
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        authManager.handleGoogleSignInResult(data, new AuthManager.AuthenticationCallback() {
+//            @Override
+//            public void onSuccess(String message) {
+//                startActivity(new Intent(AuthenticationActivity.this, MainScreenActivity.class));
+//            }
+//
+//            @Override
+//            public void onFailure(String error) {
+//                Snackbar.make(container, error, Snackbar.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 
 }

@@ -40,5 +40,8 @@
     <string name="meal_name">Meal Name</string>
     <string name="meal_location">Meal Location</string>
     <string name="hello">Hello,</string>
+    <string name="area">Area</string>
+    <string name="category">Category</string>
+    <string name="ingredient">Ingredient</string>
 
 </resources>

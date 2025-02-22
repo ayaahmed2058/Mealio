@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    android:background="@color/colorPrimary"
     android:elevation="8dp"
     app:cardCornerRadius="16dp">
 
@@ -29,21 +28,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/onboarding_img2" />
+            app:srcCompat="@drawable/chef2" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/card_bg"
             android:orientation="vertical"
+            android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/meal_img"
-            app:layout_constraintStart_toStartOf="@+id/meal_img"
-            android:background="@drawable/card_bg"
-            android:padding="5dp"
-            >
+            app:layout_constraintStart_toStartOf="@+id/meal_img">
 
             <TextView
                 android:id="@+id/meal_name"
@@ -61,15 +57,16 @@
                 android:id="@+id/meal_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:drawablePadding="5dp"
+                android:drawableTint="@color/colorPrimary"
+                android:gravity="center"
                 android:text="@string/meal_location"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:drawableStartCompat="@drawable/location"
-                app:drawableTint="@color/white"
-                android:layout_gravity="center"
-                android:gravity="center"/>
+                tools:ignore="UseCompatTextViewDrawableXml" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

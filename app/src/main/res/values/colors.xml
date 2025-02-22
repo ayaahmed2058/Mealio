@@ -4,7 +4,7 @@
     <color name="purple_500">#50C2C9</color>
     <color name="purple_700">#50C2C9</color>
     <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
@@ -20,9 +20,11 @@
     <color name="colorPrimaryDark">#219f37</color>
     <color name="colorAccent">#99ce66</color>
     <color name="colorAccent_50">#B399CE66</color>
+    <color name="colorAccent_35">#5999CE66</color>
     <color name="colorTextPrimary">#212121</color>
     <color name="color_bg">#DDF2C8</color>
     <color name="colorBackground">#FFFFFFFF</color>
     <color name="colorOnboardingIndicatorInactive">#72BCF7</color>
     <color name="edittext_bg">#99ce66</color>
+    <color name="teal_700">#FF018786</color>
 </resources>

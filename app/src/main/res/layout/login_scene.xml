@@ -6,17 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
+
     <ImageView
         android:id="@+id/bg_image"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/onboarding_img2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/app_name"
-        android:elevation="8dp"/>
+        android:elevation="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hi"
+        app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop" />
     <androidx.cardview.widget.CardView
         android:id="@+id/login_card"
         android:layout_width="0dp"
@@ -31,6 +32,7 @@
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
         app:layout_constraintTop_toTopOf="@+id/bg_image"
         app:layout_constraintVertical_bias="1.0">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,12 +74,13 @@
                     android:textStyle="bold"
                     android:transitionName="transition_text"/>
             </LinearLayout>
+
             <EditText
                 android:id="@+id/et_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginEnd="20dp"
                 android:autofillHints="emailAddress"
                 android:background="@drawable/edittext_bg"
@@ -85,7 +88,7 @@
                 android:drawablePadding="10dp"
                 android:hint="@string/email_address"
                 android:inputType="textEmailAddress"
-                android:padding="8dp"
+                android:padding="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -100,7 +103,7 @@
                 android:drawablePadding="10dp"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:padding="8dp"
+                android:padding="12dp"
                 app:layout_constraintEnd_toEndOf="@+id/et_email"
                 app:layout_constraintStart_toStartOf="@+id/et_email"
                 app:layout_constraintTop_toBottomOf="@+id/et_email" />
@@ -116,6 +119,8 @@
                 android:elevation="8dp"
                 android:text="@string/login"
                 android:textColor="@color/black"
+                android:padding="8dp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/login_with"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.444"
@@ -168,7 +173,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginBottom="5dp"
-                android:backgroundTint="@color/edittext_bg"
+                android:background="@drawable/edittext_bg"
                 android:drawableLeft="@drawable/google_icon"
                 android:elevation="8dp"
                 android:text="@string/login_with_google"

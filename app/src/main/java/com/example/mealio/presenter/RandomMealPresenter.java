@@ -2,12 +2,9 @@ package com.example.mealio.presenter;
 
 
 import com.example.mealio.model.MealRepository;
-import com.example.mealio.model.Network.AreaNetworkCallBack;
 import com.example.mealio.model.Network.MealNetworkCallBack;
-import com.example.mealio.model.pojo.AreaListItem;
 import com.example.mealio.model.pojo.MealSummary;
-import com.example.mealio.view.mainScreen.AllMealView;
-import com.example.mealio.view.mainScreen.Home.allAreas.AreaView;
+import com.example.mealio.view.mainScreen.Home.AllMealView;
 
 import java.util.List;
 

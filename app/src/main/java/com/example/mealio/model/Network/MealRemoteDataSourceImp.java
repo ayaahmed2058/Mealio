@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.mealio.model.pojo.AreaListResponse;
 import com.example.mealio.model.pojo.CategoriesResponse;
+import com.example.mealio.model.pojo.IngredientListResponse;
 import com.example.mealio.model.pojo.MealsResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -97,6 +98,27 @@ public class MealRemoteDataSourceImp implements MealRemoteDataSourceInterface {
             }
         });
 
+    }
+
+    @Override
+    public void makeNetworkCallBackForAllIngredient(IngredientNetworkCallBack ingredientNetworkCallBack) {
+        Call<IngredientListResponse> call = mealService.getIngredientsList();
+        call.enqueue(new Callback<IngredientListResponse>() {
+            @Override
+            public void onResponse(Call<IngredientListResponse> call, Response<IngredientListResponse> response) {
+                if (response.isSuccessful()) {
+                    Log.i(TAG, "onResponse:CallBack" + response.raw() + response.body());
+                    ingredientNetworkCallBack.onSuccessResultForIngredient(response.body().getMeals());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<IngredientListResponse> call, Throwable t) {
+                Log.i(TAG, "onFailure:CallBack");
+                ingredientNetworkCallBack.onFailureResult(t.getMessage());
+                t.printStackTrace();
+            }
+        });
     }
 
 }

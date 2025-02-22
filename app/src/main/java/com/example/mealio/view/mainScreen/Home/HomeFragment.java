@@ -19,26 +19,35 @@ import com.example.mealio.model.MealRepository;
 import com.example.mealio.model.Network.MealRemoteDataSourceImp;
 import com.example.mealio.model.pojo.AreaListItem;
 import com.example.mealio.model.pojo.Category;
+import com.example.mealio.model.pojo.IngredientListItem;
 import com.example.mealio.model.pojo.MealSummary;
 import com.example.mealio.presenter.AllAreasPresenter;
 import com.example.mealio.presenter.AllCategoryPresenter;
+import com.example.mealio.presenter.AllIngredientPresenter;
 import com.example.mealio.presenter.RandomMealPresenter;
-import com.example.mealio.view.mainScreen.AllMealView;
 import com.example.mealio.view.mainScreen.Home.allAreas.AreaView;
 import com.example.mealio.view.mainScreen.Home.allAreas.AreasAdapter;
 import com.example.mealio.view.mainScreen.Home.allCategoriesView.CategoriesAdapter;
 import com.example.mealio.view.mainScreen.Home.allCategoriesView.CategoryView;
+import com.example.mealio.view.mainScreen.Home.allIngredient.IngredientView;
+import com.example.mealio.view.mainScreen.Home.allIngredient.IngredientsAdapter;
 import com.example.mealio.view.mainScreen.Home.randomMeal.RandomMealAdapter;
+import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressLint("NotifyDataSetChanged")
-public class HomeFragment extends Fragment implements AllMealView, AreaView, CategoryView {
+public class HomeFragment extends Fragment implements AllMealView, AreaView, CategoryView, IngredientView {
 
     private RandomMealAdapter randomMealAdapter;
     private AreasAdapter areasAdapter;
     private CategoriesAdapter categoriesAdapter;
+    private IngredientsAdapter ingredientsAdapter;
+    private RecyclerView areasRecyclerView;
+    private RecyclerView categoryRecyclerView;
+    private RecyclerView ingredientRecyclerView;
+    private Chip chipArea, chipCategory,chipIngredient;
 
     public HomeFragment() {}
 
@@ -58,9 +67,14 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        chipArea = view.findViewById(R.id.chip_area);
+        chipCategory = view.findViewById(R.id.chip_category);
+        chipIngredient = view.findViewById(R.id.chip_ingredient);
+
         RecyclerView randomRecyclerView = view.findViewById(R.id.recycler_randomMeal);
-        RecyclerView areasRecyclerView = view.findViewById(R.id.recycler_Areas);
-        RecyclerView categoryRecyclerView = view.findViewById(R.id.recycler_categories);
+        areasRecyclerView = view.findViewById(R.id.recycler_Areas);
+        categoryRecyclerView = view.findViewById(R.id.recycler_categories);
+        ingredientRecyclerView = view.findViewById(R.id.recycler_ingredients);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -68,6 +82,7 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
         randomMealAdapter = new RandomMealAdapter(getActivity(), new ArrayList<>() );
         areasAdapter = new AreasAdapter(getActivity(), new ArrayList<>() );
         categoriesAdapter = new CategoriesAdapter(getActivity(), new ArrayList<>());
+        ingredientsAdapter = new IngredientsAdapter(getActivity(), new ArrayList<>());
 
         RandomMealPresenter randomMealPresenter = new RandomMealPresenter(this,
                 MealRepository.getInstance(MealRemoteDataSourceImp.getInstance()));
@@ -78,15 +93,24 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
         AllCategoryPresenter allCategoryPresenter = new AllCategoryPresenter(this,
                 MealRepository.getInstance(MealRemoteDataSourceImp.getInstance()));
 
+        AllIngredientPresenter allIngredientPresenter = new AllIngredientPresenter(this,
+                MealRepository.getInstance(MealRemoteDataSourceImp.getInstance()));
+
 
         randomRecyclerView.setLayoutManager(linearLayoutManager);
         randomRecyclerView.setAdapter(randomMealAdapter);
         areasRecyclerView.setAdapter(areasAdapter);
         categoryRecyclerView.setAdapter(categoriesAdapter);
+        ingredientRecyclerView.setAdapter(ingredientsAdapter);
 
         randomMealPresenter.getRandomMeal();
         allAreasPresenter.getAllAreas();
         allCategoryPresenter.getAllCategories();
+        allIngredientPresenter.getAllIngredient();
+
+        setupFilterChips();
+
+
     }
 
     @Override
@@ -108,8 +132,38 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
     }
 
     @Override
+    public void setIngredient(List<IngredientListItem> ingredientListItems) {
+        ingredientsAdapter.updateData(ingredientListItems);
+        ingredientsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void setErrorMessage(String errorMessage) {
         Toast.makeText(getActivity() , errorMessage , Toast.LENGTH_LONG).show();
 
+    }
+
+    private void setupFilterChips(){
+        areasRecyclerView.setVisibility(View.GONE);
+        categoryRecyclerView.setVisibility(View.GONE);
+        ingredientRecyclerView.setVisibility(View.GONE);
+
+        chipArea.setOnClickListener(v -> {
+            areasRecyclerView.setVisibility(View.VISIBLE);
+            categoryRecyclerView.setVisibility(View.GONE);
+            ingredientRecyclerView.setVisibility(View.GONE);
+        });
+
+        chipCategory.setOnClickListener(v -> {
+            categoryRecyclerView.setVisibility(View.VISIBLE);
+            areasRecyclerView.setVisibility(View.GONE);
+            ingredientRecyclerView.setVisibility(View.GONE);
+        });
+
+        chipIngredient.setOnClickListener(v -> {
+            ingredientRecyclerView.setVisibility(View.VISIBLE);
+            areasRecyclerView.setVisibility(View.GONE);
+            categoryRecyclerView.setVisibility(View.GONE);
+        });
     }
 }

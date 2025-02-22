@@ -1,4 +1,4 @@
-package com.example.mealio.view.mainScreen;
+package com.example.mealio.view.mainScreen.Home;
 
 
 import com.example.mealio.model.pojo.MealSummary;

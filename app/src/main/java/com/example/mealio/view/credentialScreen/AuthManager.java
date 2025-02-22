@@ -19,7 +19,7 @@ public class AuthManager {
 
     private final FirebaseAuth firebaseAuth;
     private final GoogleSignInClient googleSignInClient;
-    private static final int RC_SIGN_IN = 100;
+
 
     private final String PASSWORD_PATTERN =
             "^" +
@@ -88,9 +88,8 @@ public class AuthManager {
         return true;
     }
 
-    public void signInWithGoogle(Activity activity) {
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        activity.startActivityForResult(signInIntent, RC_SIGN_IN);
+    public GoogleSignInClient getGoogleSignInClient() {
+        return googleSignInClient;
     }
 
     public void handleGoogleSignInResult(Intent data, AuthenticationCallback callback) {
