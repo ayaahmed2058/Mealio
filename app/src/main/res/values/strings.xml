@@ -32,5 +32,13 @@
     <string name="login_with_google">Login With Google</string>
     <string name="or_login_with">or Login With</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="star">Star</string>
+    <string name="week_plan">Week Plan</string>
+    <string name="meal_image">Meal Image</string>
+    <string name="meal_name">Meal Name</string>
+    <string name="meal_location">Meal Location</string>
+    <string name="hello">Hello,</string>
 
 </resources>

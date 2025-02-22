@@ -12,7 +12,7 @@ import androidx.transition.Scene;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 import com.example.mealio.R;
-import com.example.mealio.view.MainScreenActivity;
+import com.example.mealio.view.mainScreen.MainScreenActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 public class AuthenticationActivity extends AppCompatActivity {
