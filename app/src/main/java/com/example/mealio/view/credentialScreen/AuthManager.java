@@ -63,8 +63,8 @@ public class AuthManager {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        firebaseAuth.getCurrentUser().sendEmailVerification();
-                        firebaseAuth.signOut();
+                        firebaseAuth.getCurrentUser();
+                        //firebaseAuth.signOut();
                         callback.onSuccess("Successfully created account. Check email to verify.");
                     } else {
                         callback.onFailure(task.getException().getLocalizedMessage());

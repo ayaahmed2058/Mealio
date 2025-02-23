@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
+    id ("androidx.navigation.safeargs")
 }
 
 android {
@@ -68,6 +69,13 @@ dependencies {
     //Glide
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
+    //youtube
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0")
+
+    //Rx android
+    implementation ("io.reactivex.rxjava3:rxandroid:3.0.2")
+    implementation ("io.reactivex.rxjava3:rxjava:3.1.6")
 
 
 

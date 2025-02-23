@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ingredient_img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:elevation="2dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+        app:srcCompat="@drawable/hi" />
+
+    <TextView
+        android:id="@+id/tv_ingredientName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/ingredient_img"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ingredient_img"
+        app:layout_constraintTop_toBottomOf="@+id/ingredient_img"
+        tools:text="Apple" />
+
+    <TextView
+        android:id="@+id/tv_ingredientMeasure"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:maxLines="2"
+        android:textAlignment="center"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_ingredientName"
+        app:layout_constraintStart_toStartOf="@+id/tv_ingredientName"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ingredientName"
+        tools:text="1 sliced" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

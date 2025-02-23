@@ -39,9 +39,11 @@
     <string name="meal_image">Meal Image</string>
     <string name="meal_name">Meal Name</string>
     <string name="meal_location">Meal Location</string>
-    <string name="hello">Hello,</string>
+    <string name="hello">Hello, </string>
     <string name="area">Area</string>
     <string name="category">Category</string>
     <string name="ingredient">Ingredient</string>
+    <string name="meal_description">meal Description</string>
+    <string name="ingredient_img">https://www.themealdb.com/images/ingredients/%s-Small.png</string>
 
 </resources>

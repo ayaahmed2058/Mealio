@@ -1,17 +1,20 @@
 package com.example.mealio.view.mainScreen.Home;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mealio.R;
@@ -32,13 +35,15 @@ import com.example.mealio.view.mainScreen.Home.allCategoriesView.CategoryView;
 import com.example.mealio.view.mainScreen.Home.allIngredient.IngredientView;
 import com.example.mealio.view.mainScreen.Home.allIngredient.IngredientsAdapter;
 import com.example.mealio.view.mainScreen.Home.randomMeal.RandomMealAdapter;
+import com.example.mealio.view.mealDetails.MealDetailsFragment;
 import com.google.android.material.chip.Chip;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressLint("NotifyDataSetChanged")
-public class HomeFragment extends Fragment implements AllMealView, AreaView, CategoryView, IngredientView {
+public class HomeFragment extends Fragment implements AllMealView, AreaView, CategoryView, IngredientView, onMealClickListener {
 
     private RandomMealAdapter randomMealAdapter;
     private AreasAdapter areasAdapter;
@@ -48,6 +53,7 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
     private RecyclerView categoryRecyclerView;
     private RecyclerView ingredientRecyclerView;
     private Chip chipArea, chipCategory,chipIngredient;
+    private TextView tvUserName;
 
     public HomeFragment() {}
 
@@ -70,6 +76,12 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
         chipArea = view.findViewById(R.id.chip_area);
         chipCategory = view.findViewById(R.id.chip_category);
         chipIngredient = view.findViewById(R.id.chip_ingredient);
+        tvUserName = view.findViewById(R.id.user_name);
+
+        String userName = getString(R.string.hello)+ FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+
+        tvUserName.setText(userName);
+
 
         RecyclerView randomRecyclerView = view.findViewById(R.id.recycler_randomMeal);
         areasRecyclerView = view.findViewById(R.id.recycler_Areas);
@@ -79,7 +91,7 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
-        randomMealAdapter = new RandomMealAdapter(getActivity(), new ArrayList<>() );
+        randomMealAdapter = new RandomMealAdapter(getActivity(), new ArrayList<>() , this);
         areasAdapter = new AreasAdapter(getActivity(), new ArrayList<>() );
         categoriesAdapter = new CategoriesAdapter(getActivity(), new ArrayList<>());
         ingredientsAdapter = new IngredientsAdapter(getActivity(), new ArrayList<>());
@@ -109,7 +121,6 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
         allIngredientPresenter.getAllIngredient();
 
         setupFilterChips();
-
 
     }
 
@@ -165,5 +176,15 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
             areasRecyclerView.setVisibility(View.GONE);
             categoryRecyclerView.setVisibility(View.GONE);
         });
+    }
+
+    @Override
+    public void OnMealClicked(String id) {
+
+        HomeFragmentDirections.ActionHomeFragmentToMealDetailsFragment action =
+                HomeFragmentDirections.actionHomeFragmentToMealDetailsFragment(id);
+        Navigation.findNavController(chipArea).navigate(action);
+
+        //Navigation.findNavController(chipArea).navigate(R.id.action_homeFragment_to_mealDetailsFragment);
     }
 }

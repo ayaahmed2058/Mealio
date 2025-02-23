@@ -6,6 +6,14 @@ public class IngredientListItem {
     private String strDescription;
     private String strType;
 
+    public IngredientListItem( String strIngredient , String strDescription) {
+        this.strDescription = strDescription;
+        this.strIngredient = strIngredient;
+    }
+    public IngredientListItem( ) {
+
+    }
+
     public String getIdIngredient() {
         return idIngredient;
     }

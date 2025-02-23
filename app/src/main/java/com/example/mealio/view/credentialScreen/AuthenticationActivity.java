@@ -1,19 +1,31 @@
 package com.example.mealio.view.credentialScreen;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 import androidx.transition.Fade;
 import androidx.transition.Scene;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 import com.example.mealio.R;
 import com.example.mealio.view.mainScreen.MainScreenActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+import java.util.Objects;
 
 public class AuthenticationActivity extends AppCompatActivity {
 
@@ -31,6 +43,8 @@ public class AuthenticationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
+
+        //TODO make shared pref for onboarding screen
 
         authManager = new AuthManager(this);
         container = findViewById(R.id.container);
@@ -133,6 +147,23 @@ public class AuthenticationActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String message) {
                 Snackbar.make(emailField,message, Snackbar.LENGTH_LONG).show();
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(username)
+                        //.setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                        .build();
+
+                //replace Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser())
+                // with FirebaseAuth.getInstance().getCurrentUser()
+                // if it crashes
+                Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).updateProfile(profileUpdates)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d("user updated", "User profile updated.");
+                                }
+                            }
+                        });
 //                Intent intent = new Intent(AuthenticationActivity.this, MainScreenActivity.class);
 //                startActivity(intent);
                 switchScene();
@@ -145,20 +176,16 @@ public class AuthenticationActivity extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        authManager.handleGoogleSignInResult(data, new AuthManager.AuthenticationCallback() {
-//            @Override
-//            public void onSuccess(String message) {
-//                startActivity(new Intent(AuthenticationActivity.this, MainScreenActivity.class));
-//            }
-//
-//            @Override
-//            public void onFailure(String error) {
-//                Snackbar.make(container, error, Snackbar.LENGTH_LONG).show();
-//            }
-//        });
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null){
+            Intent intent = new Intent(this, MainScreenActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+    }
 
 }

@@ -28,37 +28,37 @@ public class MainScreenActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
 
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.nav_home){
-
-                    replaceFragment(new HomeFragment());
-                }
-                else if ((item.getItemId() == R.id.nav_search)){
-
-                    replaceFragment(new SearchFragment());
-
-                }else if ((item.getItemId() == R.id.nav_star)){
-
-                    replaceFragment(new StarFragment());
-
-                }else if(item.getItemId() == R.id.nav_week){
-
-                    replaceFragment(new PlanFragment());
-
-                }
-
-                return true;
-            }
-        });
+//        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                if(item.getItemId() == R.id.nav_home){
+//
+//                    replaceFragment(new HomeFragment());
+//                }
+//                else if ((item.getItemId() == R.id.nav_search)){
+//
+//                    replaceFragment(new SearchFragment());
+//
+//                }else if ((item.getItemId() == R.id.nav_star)){
+//
+//                    replaceFragment(new StarFragment());
+//
+//                }else if(item.getItemId() == R.id.nav_week){
+//
+//                    replaceFragment(new PlanFragment());
+//
+//                }
+//
+//                return true;
+//            }
+//        });
 
     }
 
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainerView, fragment);
-        fragmentTransaction.commit();
-    }
+//    private void replaceFragment(Fragment fragment) {
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.fragmentContainerView, fragment);
+//        fragmentTransaction.commit();
+//    }
 }

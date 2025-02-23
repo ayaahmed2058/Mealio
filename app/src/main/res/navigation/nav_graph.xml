@@ -4,25 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
-
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.mealio.view.mainScreen.Home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/planFragment"
-        android:name="com.example.mealio.view.mainScreen.plan.PlanFragment"
-        android:label="fragment_plan"
-        tools:layout="@layout/fragment_plan" />
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.mealio.view.mainScreen.search.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
-    <fragment
-        android:id="@+id/starFragment"
-        android:name="com.example.mealio.view.mainScreen.star.StarFragment"
-        android:label="fragment_star"
-        tools:layout="@layout/fragment_star" />
+        android:id="@+id/mealDetailsFragment"
+        android:name="com.example.mealio.view.mealDetails.MealDetailsFragment"
+        android:label="MealDetailsFragment" >
+        <argument
+            android:name="mealID"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -6,4 +6,5 @@ public interface MealRemoteDataSourceInterface {
     void makeNetworkCallBackForAllAreas (AreaNetworkCallBack areaNetworkCallBack);
     void makeNetworkCallBackForAllCategories (CategoryNetworkCallBack categoryNetworkCallBack);
     void makeNetworkCallBackForAllIngredient (IngredientNetworkCallBack ingredientNetworkCallBack);
+    void makeNetworkCallBackForMealDetails (MealDetailsNetworkCallBack mealDetailsNetworkCallBack, String mealID);
 }

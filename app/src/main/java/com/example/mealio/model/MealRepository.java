@@ -4,6 +4,7 @@ package com.example.mealio.model;
 import com.example.mealio.model.Network.AreaNetworkCallBack;
 import com.example.mealio.model.Network.CategoryNetworkCallBack;
 import com.example.mealio.model.Network.IngredientNetworkCallBack;
+import com.example.mealio.model.Network.MealDetailsNetworkCallBack;
 import com.example.mealio.model.Network.MealRemoteDataSourceInterface;
 import com.example.mealio.model.Network.MealNetworkCallBack;
 
@@ -38,6 +39,10 @@ public class MealRepository {
 
     public void getAllIngredient(IngredientNetworkCallBack ingredientNetworkCallBack){
         mealRemoteDataSourceInterface.makeNetworkCallBackForAllIngredient(ingredientNetworkCallBack);
+    }
+
+    public void getMealDetails (MealDetailsNetworkCallBack mealDetailsNetworkCallBack, String mealID){
+        mealRemoteDataSourceInterface.makeNetworkCallBackForMealDetails(mealDetailsNetworkCallBack , mealID);
     }
 
 

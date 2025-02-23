@@ -18,7 +18,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello"
@@ -34,7 +34,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_randomMeal"
@@ -45,7 +45,7 @@
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintTop_toBottomOf="@+id/materialDivider"
         tools:listitem="@layout/meal_item"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
@@ -58,7 +58,8 @@
         app:singleSelection="true"
         android:padding="10dp"
         android:textAlignment="center"
-        android:background="@drawable/card_bg">
+        android:background="@drawable/card_bg"
+        >
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_area"
