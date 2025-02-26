@@ -21,6 +21,7 @@
     <color name="colorAccent">#99ce66</color>
     <color name="colorAccent_50">#B399CE66</color>
     <color name="colorAccent_35">#5999CE66</color>
+    <color name="yellow">#FFEB3B</color>
     <color name="colorTextPrimary">#212121</color>
     <color name="color_bg">#DDF2C8</color>
     <color name="colorBackground">#FFFFFFFF</color>

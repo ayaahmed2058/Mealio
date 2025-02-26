@@ -58,7 +58,7 @@ public class IngredientMealDetailsAdapter extends RecyclerView.Adapter<Ingredien
             super(itemView);
             ingredientName = itemView.findViewById(R.id.tv_ingredientName);
             ingredientMeasure = itemView.findViewById(R.id.tv_ingredientMeasure);
-            ingredientImage = itemView.findViewById(R.id.ingredient_img);
+            ingredientImage = itemView.findViewById(R.id.meal_img);
         }
     }
 }

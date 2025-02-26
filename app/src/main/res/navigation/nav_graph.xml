@@ -19,5 +19,34 @@
         <argument
             android:name="mealID"
             app:argType="string" />
+        <argument
+            android:name="searchMealID"
+            app:argType="string" />
+        <argument
+            android:name="starMealID"
+            app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.mealio.view.mainScreen.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/starFragment"
+        android:name="com.example.mealio.view.mainScreen.star.StarFragment"
+        android:label="fragment_star"
+        tools:layout="@layout/fragment_star" >
+        <action
+            android:id="@+id/action_starFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planFragment"
+        android:name="com.example.mealio.view.mainScreen.plan.PlanFragment"
+        android:label="fragment_plan"
+        tools:layout="@layout/fragment_plan" />
 </navigation>

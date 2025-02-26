@@ -72,11 +72,22 @@ dependencies {
 
     //youtube
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0")
+    
+
+    //Room
+    implementation ("androidx.room:room-runtime:2.6.1")
+    annotationProcessor ("androidx.room:room-compiler:2.6.1")
 
     //Rx android
     implementation ("io.reactivex.rxjava3:rxandroid:3.0.2")
     implementation ("io.reactivex.rxjava3:rxjava:3.1.6")
 
+    //Rx Room
+    implementation ("androidx.room:room-rxjava3:2.6.1")
+    //Rx RetroFit
+    implementation ("com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0")
+
+    implementation ("com.google.code.gson:gson:2.8.9")
 
 
 

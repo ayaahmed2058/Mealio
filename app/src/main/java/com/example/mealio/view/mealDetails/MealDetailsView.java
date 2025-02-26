@@ -1,7 +1,6 @@
 package com.example.mealio.view.mealDetails;
 
-import com.example.mealio.model.pojo.IngredientListItem;
-import com.example.mealio.model.pojo.Meal;
+import com.example.mealio.model.db.Meal;
 import java.util.List;
 
 public interface MealDetailsView {

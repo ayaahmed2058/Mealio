@@ -3,6 +3,7 @@ package com.example.mealio.view.onboardingScreen;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,8 +29,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        boolean isFirstTime = sharedPreferences.getBoolean("isFirstTime", true);
+
+        if (isFirstTime) {
+            setContentView(R.layout.activity_main);
+            showOnboardingScreen();
+        } else {
+            startActivity(new Intent(this, AuthenticationActivity.class));
+            finish();
+        }
+    }
+
+    private void showOnboardingScreen() {
         layoutOnboardingIndicator = findViewById(R.id.layoutOnboardingIndicators);
         buttonOnboardingAction = findViewById(R.id.buttonOnboardingAction);
 
@@ -39,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         onboardingViewPager.setAdapter(onboardingAdapter);
 
         setupOnboardingIndicators();
-
         setCurrentOnboardingIndicator(0);
 
         onboardingViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -51,15 +63,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         buttonOnboardingAction.setOnClickListener(v -> {
-            if(onboardingViewPager.getCurrentItem() + 1 < onboardingAdapter.getItemCount()){
+            if (onboardingViewPager.getCurrentItem() + 1 < onboardingAdapter.getItemCount()) {
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
-            }else {
+            } else {
+                markOnboardingAsSeen();
                 startActivity(new Intent(getApplicationContext(), AuthenticationActivity.class));
                 finish();
             }
         });
-
     }
+
+    private void markOnboardingAsSeen() {
+        SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isFirstTime", false);
+        editor.apply();
+    }
+
 
     private void setupOnboardingItems (){
 

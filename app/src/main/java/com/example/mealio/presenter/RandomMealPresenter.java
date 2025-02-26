@@ -4,18 +4,18 @@ package com.example.mealio.presenter;
 import com.example.mealio.model.MealRepository;
 import com.example.mealio.model.Network.MealNetworkCallBack;
 import com.example.mealio.model.pojo.MealSummary;
-import com.example.mealio.view.mainScreen.Home.AllMealView;
+import com.example.mealio.view.mainScreen.Home.MealView;
 
 import java.util.List;
 
 public class RandomMealPresenter implements MealNetworkCallBack{
 
-    private AllMealView allMealView;
+    private MealView mealView;
     private MealRepository mealRepository;
 
 
-    public RandomMealPresenter(AllMealView allMealView, MealRepository mealRepository){
-        this.allMealView = allMealView;
+    public RandomMealPresenter(MealView mealView, MealRepository mealRepository){
+        this.mealView = mealView;
         this.mealRepository = mealRepository;
     }
 
@@ -26,11 +26,11 @@ public class RandomMealPresenter implements MealNetworkCallBack{
 
     @Override
     public void onSuccessResult(List<MealSummary> meals) {
-        allMealView.setMeals(meals);
+        mealView.setMeals(meals);
     }
 
     @Override
     public void onFailureResult(String errorMessage) {
-        allMealView.setErrorMessage(errorMessage);
+        mealView.setErrorMessage(errorMessage);
     }
 }

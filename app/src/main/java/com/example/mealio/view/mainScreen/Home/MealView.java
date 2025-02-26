@@ -5,7 +5,7 @@ import com.example.mealio.model.pojo.MealSummary;
 
 import java.util.List;
 
-public interface AllMealView {
+public interface MealView {
     void setMeals(List<MealSummary> meals);
     void setErrorMessage (String errorMessage);
 }

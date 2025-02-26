@@ -7,11 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.mealio.R;
-import com.example.mealio.model.pojo.Meal;
+import com.example.mealio.model.db.Meal;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -20,6 +21,13 @@ import java.util.List;
 
 public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.MealDetailsViewHolder> {
     private List<Meal> mealList = new ArrayList<>();
+    private OnStarClickListener onStarClickListener;
+    private OnCalenderClickListener onCalenderClickListener;
+
+    public MealDetailsAdapter (OnStarClickListener onStarClickListener,OnCalenderClickListener onCalenderClickListener){
+        this.onStarClickListener = onStarClickListener;
+        this.onCalenderClickListener = onCalenderClickListener;
+    }
 
     @NonNull
     @Override
@@ -42,6 +50,22 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
                 .into(holder.mealImage);
 
         holder.ingredientMealDetailsAdapter.updateData(meal.getIngredientList());
+
+        holder.star_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onStarClickListener.addToStar(meal);
+                holder.star_img.setColorFilter(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorPrimaryDark));
+
+            }
+        });
+
+        holder.calender_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCalenderClickListener.OnCalenderClicked(meal.getIdMeal(),meal.getStrMeal(),meal.getStrMealThumb());
+            }
+        });
 
         if (!meal.getStrYoutube().isEmpty() && meal.getStrYoutube() != null) {
             String[] split = meal.getStrYoutube().split("=");
@@ -67,7 +91,7 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
     }
 
     static class MealDetailsViewHolder extends RecyclerView.ViewHolder {
-        private ImageView mealImage;
+        private ImageView mealImage , star_img, calender_img;
         private TextView mealName, mealCategory, mealLocation, mealInstructions;
         private YouTubePlayerView youTubePlayerView;
         private RecyclerView ingredientRecyclerView;
@@ -80,6 +104,8 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
             mealLocation = itemView.findViewById(R.id.meal_location);
             mealInstructions = itemView.findViewById(R.id.meal_steps);
             mealImage = itemView.findViewById(R.id.meal_img);
+            star_img = itemView.findViewById(R.id.star_img);
+            calender_img = itemView.findViewById(R.id.calender_img);
             youTubePlayerView = itemView.findViewById(R.id.IngredientVideo);
             ingredientRecyclerView = itemView.findViewById(R.id.recycler_meal_ingredient);
 

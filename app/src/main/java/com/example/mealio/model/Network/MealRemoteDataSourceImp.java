@@ -7,6 +7,10 @@ import com.example.mealio.model.pojo.CategoriesResponse;
 import com.example.mealio.model.pojo.IngredientListResponse;
 import com.example.mealio.model.pojo.MealResponse;
 import com.example.mealio.model.pojo.MealsResponse;
+
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +34,7 @@ public class MealRemoteDataSourceImp implements MealRemoteDataSourceInterface {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
         mealService = retrofit.create(MealService.class);
     }
@@ -143,4 +148,23 @@ public class MealRemoteDataSourceImp implements MealRemoteDataSourceInterface {
         });
     }
 
+    @Override
+    public Observable<MealsResponse> filterByCategoryNetworkCallBack(String categoryID) {
+        return mealService.getMealsByCategory(categoryID);
+    }
+
+    @Override
+    public Observable<MealsResponse> filterByAreaNetworkCallBack(String areaID) {
+        return mealService.getMealsByArea(areaID);
+    }
+
+    @Override
+    public Observable<MealsResponse> filterByIngredientNetworkCallBack(String ingredientID) {
+        return mealService.getMealsByIngredient(ingredientID);
+    }
+
+    @Override
+    public Observable<MealsResponse> searchForMeal(String mealName) {
+        return mealService.searchMeals(mealName);
+    }
 }

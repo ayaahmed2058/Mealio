@@ -39,11 +39,17 @@
     <string name="meal_image">Meal Image</string>
     <string name="meal_name">Meal Name</string>
     <string name="meal_location">Meal Location</string>
-    <string name="hello">Hello, </string>
+    <string name="hello">Welcom, </string>
     <string name="area">Area</string>
     <string name="category">Category</string>
     <string name="ingredient">Ingredient</string>
     <string name="meal_description">meal Description</string>
     <string name="ingredient_img">https://www.themealdb.com/images/ingredients/%s-Small.png</string>
+    <string name="enter_meal_name">Enter meal name</string>
+    <string name="no_results_found">No results found</string>
+    <string name="your_star_meals">Your Star Meals</string>
+    <string name="add_to_calender">Add To Calender</string>
+    <string name="your_week_plan_meals">Your Week Plan Meals</string>
+    <string name="skip">Skip</string>
 
 </resources>

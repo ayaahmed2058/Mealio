@@ -1,6 +1,7 @@
 package com.example.mealio.view.credentialScreen;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +38,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     private Button btnAuth ,btnGoogleSignIn ;
     private AuthManager authManager;
     private static final int RC_SIGN_IN = 100;
+    private TextView skip;
 
 
     @Override
@@ -85,9 +87,12 @@ public class AuthenticationActivity extends AppCompatActivity {
             passwordField = container.findViewById(R.id.et_password);
             btnAuth = container.findViewById(R.id.btnAuth);
             btnGoogleSignIn = container.findViewById(R.id.btn_google_signup);
+            skip = container.findViewById(R.id.tv_skip);
 
             btnAuth.setOnClickListener(v -> handleLogin());
             btnGoogleSignIn.setOnClickListener(v -> signInWithGoogle());
+            skip.setOnClickListener(v -> enterAsGuest());
+
         });
     }
 
@@ -99,10 +104,13 @@ public class AuthenticationActivity extends AppCompatActivity {
             confirmPasswordField = container.findViewById(R.id.et_confirmPassword);
             btnAuth = container.findViewById(R.id.btnAuth);
             btnGoogleSignIn = container.findViewById(R.id.btn_google_signup);
+            skip = container.findViewById(R.id.tv_skip);
 
 
             btnAuth.setOnClickListener(v -> handleSignUp());
             btnGoogleSignIn.setOnClickListener(v -> signInWithGoogle());
+            skip.setOnClickListener(v -> enterAsGuest());
+
 
         });
     }
@@ -185,7 +193,24 @@ public class AuthenticationActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-
     }
+
+    private void enterAsGuest() {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+        firebaseAuth.signInAnonymously()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Intent intent = new Intent(AuthenticationActivity.this, MainScreenActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Snackbar.make(skip, "Failed to sign in as guest", Snackbar.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+
+
 
 }

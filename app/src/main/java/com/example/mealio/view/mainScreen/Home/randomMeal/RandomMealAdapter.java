@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mealio.R;
 import com.example.mealio.model.pojo.MealSummary;
-import com.example.mealio.view.mainScreen.Home.onMealClickListener;
+import com.example.mealio.view.mainScreen.Home.OnMealClickListener;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ import java.util.List;
 public class RandomMealAdapter extends RecyclerView.Adapter<RandomMealAdapter.HomeViewHolder> {
     private Context context;
     private List<MealSummary> mealSummaries;
-    private onMealClickListener onMealClickListener;
+    private OnMealClickListener onMealClickListener;
 
-    public RandomMealAdapter(Context context, List<MealSummary> mealSummaries , onMealClickListener onMealClickListener) {
+    public RandomMealAdapter(Context context, List<MealSummary> mealSummaries , OnMealClickListener onMealClickListener) {
         this.context = context;
         this.mealSummaries = mealSummaries;
         this.onMealClickListener = onMealClickListener;

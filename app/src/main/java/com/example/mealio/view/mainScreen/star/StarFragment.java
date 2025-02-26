@@ -1,60 +1,39 @@
 package com.example.mealio.view.mainScreen.star;
 
 import android.os.Bundle;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.mealio.R;
+import com.example.mealio.model.MealRepository;
+import com.example.mealio.model.Network.MealRemoteDataSourceImp;
+import com.example.mealio.model.db.Meal;
+import com.example.mealio.model.db.MealLocalDataSourceImp;
+import com.example.mealio.presenter.StarPresenter;
+import com.example.mealio.view.mainScreen.Home.HomeFragmentDirections;
+import com.example.mealio.view.mainScreen.Home.OnMealClickListener;
+import com.google.android.material.snackbar.Snackbar;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link StarFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class StarFragment extends Fragment {
+public class StarFragment extends Fragment implements OnDeleteClickListener, StarMealView, OnMealClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView starMealsRecyclerView;
+    private StarMealAdapter starMealAdapter;
+    private StarPresenter starPresenter;
 
     public StarFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StarFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static StarFragment newInstance(String param1, String param2) {
-        StarFragment fragment = new StarFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -62,5 +41,46 @@ public class StarFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_star, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        starMealsRecyclerView  = view.findViewById(R.id.recycler_starMeals);
+        starMealAdapter = new StarMealAdapter(this,this);
+        starPresenter = new StarPresenter(this, MealRepository.getInstance(MealLocalDataSourceImp.getInstance(getContext()),
+                MealRemoteDataSourceImp.getInstance()));
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        starMealsRecyclerView.setLayoutManager(gridLayoutManager);
+        starMealsRecyclerView.setAdapter(starMealAdapter);
+
+        starPresenter.getStoredMeal();
+
+    }
+
+    @Override
+    public void deleteFromStar(Meal meal) {
+        starPresenter.deleteFromFav(meal);
+        starMealAdapter.notifyDataSetChanged();
+        Snackbar.make(starMealsRecyclerView,"Meal Was deleted successfully" , Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setMeals(List<Meal> meals) {
+        starMealAdapter.updateData(meals);
+    }
+
+    @Override
+    public void setErrorMessage(String errorMessage) {
+        Snackbar.make(starMealsRecyclerView,errorMessage, Snackbar.LENGTH_LONG).show();;
+    }
+
+    @Override
+    public void OnMealClicked(String id) {
+        StarFragmentDirections.ActionStarFragmentToMealDetailsFragment action =
+                StarFragmentDirections.actionStarFragmentToMealDetailsFragment(id,"StarFragment", "DetailsFragment");
+        Navigation.findNavController(starMealsRecyclerView).navigate(action);
     }
 }

@@ -1,6 +1,6 @@
 package com.example.mealio.model.Network;
 
-import com.example.mealio.model.pojo.Meal;
+import com.example.mealio.model.db.Meal;
 
 import java.util.List;
 

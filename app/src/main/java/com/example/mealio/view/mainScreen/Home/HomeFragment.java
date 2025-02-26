@@ -1,7 +1,6 @@
 package com.example.mealio.view.mainScreen.Home;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +19,7 @@ import android.widget.Toast;
 import com.example.mealio.R;
 import com.example.mealio.model.MealRepository;
 import com.example.mealio.model.Network.MealRemoteDataSourceImp;
+import com.example.mealio.model.db.MealLocalDataSourceImp;
 import com.example.mealio.model.pojo.AreaListItem;
 import com.example.mealio.model.pojo.Category;
 import com.example.mealio.model.pojo.IngredientListItem;
@@ -35,7 +35,6 @@ import com.example.mealio.view.mainScreen.Home.allCategoriesView.CategoryView;
 import com.example.mealio.view.mainScreen.Home.allIngredient.IngredientView;
 import com.example.mealio.view.mainScreen.Home.allIngredient.IngredientsAdapter;
 import com.example.mealio.view.mainScreen.Home.randomMeal.RandomMealAdapter;
-import com.example.mealio.view.mealDetails.MealDetailsFragment;
 import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -43,7 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressLint("NotifyDataSetChanged")
-public class HomeFragment extends Fragment implements AllMealView, AreaView, CategoryView, IngredientView, onMealClickListener {
+public class HomeFragment extends Fragment implements MealView, AreaView, CategoryView, IngredientView, OnMealClickListener {
 
     private RandomMealAdapter randomMealAdapter;
     private AreasAdapter areasAdapter;
@@ -53,7 +52,6 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
     private RecyclerView categoryRecyclerView;
     private RecyclerView ingredientRecyclerView;
     private Chip chipArea, chipCategory,chipIngredient;
-    private TextView tvUserName;
 
     public HomeFragment() {}
 
@@ -76,9 +74,9 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
         chipArea = view.findViewById(R.id.chip_area);
         chipCategory = view.findViewById(R.id.chip_category);
         chipIngredient = view.findViewById(R.id.chip_ingredient);
-        tvUserName = view.findViewById(R.id.user_name);
+        TextView tvUserName = view.findViewById(R.id.user_name);
 
-        String userName = getString(R.string.hello)+ FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        String userName = getString(R.string.hello) + " "+ FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
         tvUserName.setText(userName);
 
@@ -97,16 +95,20 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
         ingredientsAdapter = new IngredientsAdapter(getActivity(), new ArrayList<>());
 
         RandomMealPresenter randomMealPresenter = new RandomMealPresenter(this,
-                MealRepository.getInstance(MealRemoteDataSourceImp.getInstance()));
+                MealRepository.getInstance(MealLocalDataSourceImp.getInstance(getContext()),
+                        MealRemoteDataSourceImp.getInstance()));
 
         AllAreasPresenter allAreasPresenter = new AllAreasPresenter(this,
-                MealRepository.getInstance(MealRemoteDataSourceImp.getInstance()));
+                MealRepository.getInstance(MealLocalDataSourceImp.getInstance(getContext()),
+                        MealRemoteDataSourceImp.getInstance()));
 
         AllCategoryPresenter allCategoryPresenter = new AllCategoryPresenter(this,
-                MealRepository.getInstance(MealRemoteDataSourceImp.getInstance()));
+                MealRepository.getInstance(MealLocalDataSourceImp.getInstance(getContext()),
+                        MealRemoteDataSourceImp.getInstance()));
 
         AllIngredientPresenter allIngredientPresenter = new AllIngredientPresenter(this,
-                MealRepository.getInstance(MealRemoteDataSourceImp.getInstance()));
+                MealRepository.getInstance(MealLocalDataSourceImp.getInstance(getContext()),
+                        MealRemoteDataSourceImp.getInstance()));
 
 
         randomRecyclerView.setLayoutManager(linearLayoutManager);
@@ -182,7 +184,7 @@ public class HomeFragment extends Fragment implements AllMealView, AreaView, Cat
     public void OnMealClicked(String id) {
 
         HomeFragmentDirections.ActionHomeFragmentToMealDetailsFragment action =
-                HomeFragmentDirections.actionHomeFragmentToMealDetailsFragment(id);
+                HomeFragmentDirections.actionHomeFragmentToMealDetailsFragment(id, "HomeFragment", "DetailsFragment");
         Navigation.findNavController(chipArea).navigate(action);
 
         //Navigation.findNavController(chipArea).navigate(R.id.action_homeFragment_to_mealDetailsFragment);

@@ -22,6 +22,22 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/calender_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="12dp"
+            app:srcCompat="@drawable/weekend" />
+
+        <ImageView
+            android:id="@+id/star_img"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:layout_margin="12dp"
+            app:srcCompat="@drawable/star1" />
+
+        <ImageView
             android:id="@+id/meal_img"
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -46,10 +62,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:layout_marginStart="18dp"
+            android:layout_marginBottom="50dp"
             android:drawablePadding="5dp"
             android:drawableTint="@color/colorPrimary"
             android:text="@string/meal_location"
-            android:layout_margin="18dp"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -60,13 +77,15 @@
             android:id="@+id/meal_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
-            android:layout_margin="18dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="18dp"
+            android:layout_marginBottom="18dp"
             android:text="@string/category"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:ignore="UseCompatTextViewDrawableXml" />
+
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -79,6 +98,8 @@
         app:layout_constraintEnd_toEndOf="@id/meal_card"
         app:layout_constraintStart_toStartOf="@id/meal_card"
         app:layout_constraintTop_toBottomOf="@id/meal_card" />
+
+
 
     <TextView
         android:id="@+id/meal_steps"
