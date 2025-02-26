@@ -209,8 +209,5 @@ public class AuthenticationActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-
-
+    
 }
