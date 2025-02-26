@@ -188,7 +188,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user != null){
+        if(user != null && !user.isAnonymous()){
             Intent intent = new Intent(this, MainScreenActivity.class);
             startActivity(intent);
             finish();
@@ -209,5 +209,5 @@ public class AuthenticationActivity extends AppCompatActivity {
                     }
                 });
     }
-    
+
 }

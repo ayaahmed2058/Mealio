@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.mealio.R;
 import com.example.mealio.model.db.Meal;
+import com.google.firebase.auth.FirebaseAuth;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -23,10 +26,12 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
     private List<Meal> mealList = new ArrayList<>();
     private OnStarClickListener onStarClickListener;
     private OnCalenderClickListener onCalenderClickListener;
+    private FirebaseAuth firebaseAuth;
 
     public MealDetailsAdapter (OnStarClickListener onStarClickListener,OnCalenderClickListener onCalenderClickListener){
         this.onStarClickListener = onStarClickListener;
         this.onCalenderClickListener = onCalenderClickListener;
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     @NonNull
@@ -50,6 +55,11 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
                 .into(holder.mealImage);
 
         holder.ingredientMealDetailsAdapter.updateData(meal.getIngredientList());
+
+        if (firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isAnonymous()) {
+           holder.star_img.setVisibility(View.INVISIBLE);
+           holder.calender_img.setVisibility(View.INVISIBLE);
+        }
 
         holder.star_img.setOnClickListener(new View.OnClickListener() {
             @Override

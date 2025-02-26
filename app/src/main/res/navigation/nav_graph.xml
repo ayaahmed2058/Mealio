@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_homeFragment_to_mealDetailsFragment"
             app:destination="@id/mealDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_authenticationActivity"
+            app:destination="@id/authenticationActivity" />
     </fragment>
     <fragment
         android:id="@+id/mealDetailsFragment"
@@ -49,4 +52,8 @@
         android:name="com.example.mealio.view.mainScreen.plan.PlanFragment"
         android:label="fragment_plan"
         tools:layout="@layout/fragment_plan" />
+    <activity
+        android:id="@+id/authenticationActivity"
+        android:name="com.example.mealio.view.credentialScreen.AuthenticationActivity"
+        android:label="AuthenticationActivity" />
 </navigation>

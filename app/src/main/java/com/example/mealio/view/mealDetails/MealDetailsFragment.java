@@ -127,6 +127,4 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView, On
 
         builder.show();
     }
-
-
 }
