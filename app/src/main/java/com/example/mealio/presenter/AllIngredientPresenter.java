@@ -1,13 +1,15 @@
 package com.example.mealio.presenter;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
 import com.example.mealio.model.MealRepository;
-import com.example.mealio.model.Network.IngredientNetworkCallBack;
-import com.example.mealio.model.pojo.IngredientListItem;
+import com.example.mealio.model.pojo.IngredientListResponse;
 import com.example.mealio.view.mainScreen.Home.allIngredient.IngredientView;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
-import java.util.List;
-
-public class AllIngredientPresenter implements IngredientNetworkCallBack {
+public class AllIngredientPresenter  {
     private MealRepository mealRepository;
     private IngredientView ingredientView;
 
@@ -16,18 +18,21 @@ public class AllIngredientPresenter implements IngredientNetworkCallBack {
         this.mealRepository = mealRepository;
     }
 
+    @SuppressLint("CheckResult")
     public void getAllIngredient(){
-        mealRepository.getAllIngredient(this);
+        Observable<IngredientListResponse> ingredientListResponseObservable = mealRepository.getAllIngredient();
+        ingredientListResponseObservable.subscribeOn(Schedulers.io())
+                .map(item -> item.getMeals())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        list -> {
+                            ingredientView.setIngredient(list);
+                            Log.i("TAG", list.size() + "");
+                        },
+                        error -> {
+                            ingredientView.setErrorMessage(error.getMessage());
+                        }
+                );
     }
 
-
-    @Override
-    public void onSuccessResultForIngredient(List<IngredientListItem> ingredientListItems) {
-        ingredientView.setIngredient(ingredientListItems);
-    }
-
-    @Override
-    public void onFailureResult(String errorMessage) {
-        ingredientView.setErrorMessage(errorMessage);
-    }
 }

@@ -1,5 +1,8 @@
 package com.example.mealio.model.Network;
 
+import com.example.mealio.model.pojo.AreaListResponse;
+import com.example.mealio.model.pojo.CategoriesResponse;
+import com.example.mealio.model.pojo.IngredientListResponse;
 import com.example.mealio.model.pojo.MealResponse;
 import com.example.mealio.model.pojo.MealsResponse;
 
@@ -9,11 +12,11 @@ import retrofit2.Call;
 
 public interface MealRemoteDataSourceInterface {
 
-    void makeNetworkCallBackForRandomMeal (MealNetworkCallBack mealNetworkCallBack);
-    void makeNetworkCallBackForAllAreas (AreaNetworkCallBack areaNetworkCallBack);
-    void makeNetworkCallBackForAllCategories (CategoryNetworkCallBack categoryNetworkCallBack);
-    void makeNetworkCallBackForAllIngredient (IngredientNetworkCallBack ingredientNetworkCallBack);
-    void makeNetworkCallBackForMealDetails (MealDetailsNetworkCallBack mealDetailsNetworkCallBack, String mealID);
+    Single<MealsResponse> makeNetworkCallBackForRandomMeal ();
+    Observable<AreaListResponse> makeNetworkCallBackForAllAreas ();
+    Observable<CategoriesResponse> makeNetworkCallBackForAllCategories();
+    Observable<IngredientListResponse> makeNetworkCallBackForAllIngredient ();
+    Observable<MealResponse> makeNetworkCallBackForMealDetails (String mealID);
 
     Observable<MealsResponse> filterByCategoryNetworkCallBack (String categoryID);
     Observable<MealsResponse> filterByAreaNetworkCallBack (String areaID);

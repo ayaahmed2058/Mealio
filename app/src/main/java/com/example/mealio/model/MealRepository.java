@@ -1,22 +1,19 @@
 package com.example.mealio.model;
 
 
-import com.example.mealio.model.Network.AreaNetworkCallBack;
-import com.example.mealio.model.Network.CategoryNetworkCallBack;
-import com.example.mealio.model.Network.IngredientNetworkCallBack;
-import com.example.mealio.model.Network.MealDetailsNetworkCallBack;
 import com.example.mealio.model.Network.MealRemoteDataSourceInterface;
-import com.example.mealio.model.Network.MealNetworkCallBack;
 import com.example.mealio.model.db.Meal;
 import com.example.mealio.model.db.MealLocalDataSourceInterface;
 import com.example.mealio.model.db.WeekPlanner;
-import com.example.mealio.model.pojo.MealSummary;
+import com.example.mealio.model.pojo.AreaListResponse;
+import com.example.mealio.model.pojo.CategoriesResponse;
+import com.example.mealio.model.pojo.IngredientListResponse;
+import com.example.mealio.model.pojo.MealResponse;
 import com.example.mealio.model.pojo.MealsResponse;
-
 import java.util.List;
-
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 
 
 public class MealRepository {
@@ -37,24 +34,24 @@ public class MealRepository {
     }
 
 
-    public void getRandomMeal (MealNetworkCallBack mealNetworkCallBack){
-        mealRemoteDataSourceInterface.makeNetworkCallBackForRandomMeal(mealNetworkCallBack);
+    public Single<MealsResponse> getRandomMeal (){
+       return mealRemoteDataSourceInterface.makeNetworkCallBackForRandomMeal();
     }
 
-    public void getALLAreas (AreaNetworkCallBack areaNetworkCallBack){
-        mealRemoteDataSourceInterface.makeNetworkCallBackForAllAreas(areaNetworkCallBack);
+    public Observable<AreaListResponse> getALLAreas (){
+        return mealRemoteDataSourceInterface.makeNetworkCallBackForAllAreas();
     }
 
-    public void getAllCategories (CategoryNetworkCallBack categoryNetworkCallBack){
-        mealRemoteDataSourceInterface.makeNetworkCallBackForAllCategories(categoryNetworkCallBack);
+    public Observable<CategoriesResponse> getAllCategories (){
+        return mealRemoteDataSourceInterface.makeNetworkCallBackForAllCategories();
     }
 
-    public void getAllIngredient(IngredientNetworkCallBack ingredientNetworkCallBack){
-        mealRemoteDataSourceInterface.makeNetworkCallBackForAllIngredient(ingredientNetworkCallBack);
+    public Observable<IngredientListResponse> getAllIngredient(){
+        return mealRemoteDataSourceInterface.makeNetworkCallBackForAllIngredient();
     }
 
-    public void getMealDetails (MealDetailsNetworkCallBack mealDetailsNetworkCallBack, String mealID){
-        mealRemoteDataSourceInterface.makeNetworkCallBackForMealDetails(mealDetailsNetworkCallBack , mealID);
+    public Observable<MealResponse> getMealDetails (String mealID){
+        return mealRemoteDataSourceInterface.makeNetworkCallBackForMealDetails( mealID);
     }
 
     public Observable<MealsResponse> filterByArea(String areaID){

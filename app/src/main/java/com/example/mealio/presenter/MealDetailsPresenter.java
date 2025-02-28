@@ -2,20 +2,17 @@ package com.example.mealio.presenter;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
-
 import com.example.mealio.model.MealRepository;
-import com.example.mealio.model.Network.MealDetailsNetworkCallBack;
 import com.example.mealio.model.db.Meal;
 import com.example.mealio.model.db.WeekPlanner;
+import com.example.mealio.model.pojo.MealResponse;
 import com.example.mealio.view.mealDetails.MealDetailsView;
-
-import java.util.List;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class MealDetailsPresenter implements MealDetailsNetworkCallBack {
+public class MealDetailsPresenter{
 
     private MealDetailsView mealDetailsView;
     private MealRepository mealRepository;
@@ -26,8 +23,21 @@ public class MealDetailsPresenter implements MealDetailsNetworkCallBack {
         this.mealRepository = mealRepository;
     }
 
+    @SuppressLint("CheckResult")
     public void getMealDetails(String mealID){
-        mealRepository.getMealDetails(this,mealID);
+        Observable<MealResponse> mealResponseObservable = mealRepository.getMealDetails(mealID);
+        mealResponseObservable.subscribeOn(Schedulers.io())
+                .map(item -> item.getMeals())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        list -> {
+                            mealDetailsView.setMealDetails(list);
+                            Log.i("TAG", list.size() + "");
+                        },
+                        error -> {
+                            mealDetailsView.setErrorMessage(error.getMessage());
+                        }
+                );
     }
 
     @SuppressLint("CheckResult")
@@ -54,17 +64,5 @@ public class MealDetailsPresenter implements MealDetailsNetworkCallBack {
                             mealDetailsView.setErrorMessage(error.getMessage());
                         }
                 );
-    }
-
-
-
-    @Override
-    public void onSuccessResultForMealDetails(List<Meal> mealList) {
-        mealDetailsView.setMealDetails(mealList);
-    }
-
-    @Override
-    public void onFailureResult(String errorMessage) {
-        mealDetailsView.setErrorMessage(errorMessage);
     }
 }

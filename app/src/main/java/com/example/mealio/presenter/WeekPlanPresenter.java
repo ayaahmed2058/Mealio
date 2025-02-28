@@ -3,7 +3,6 @@ package com.example.mealio.presenter;
 import android.annotation.SuppressLint;
 import android.util.Log;
 import com.example.mealio.model.MealRepository;
-import com.example.mealio.model.db.Meal;
 import com.example.mealio.model.db.WeekPlanner;
 import com.example.mealio.view.mainScreen.plan.PlanView;
 import java.util.List;

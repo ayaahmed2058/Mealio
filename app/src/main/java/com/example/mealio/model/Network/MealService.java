@@ -6,7 +6,6 @@ import com.example.mealio.model.pojo.CategoryListResponse;
 import com.example.mealio.model.pojo.IngredientListResponse;
 import com.example.mealio.model.pojo.MealResponse;
 import com.example.mealio.model.pojo.MealsResponse;
-
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
@@ -17,7 +16,7 @@ public interface MealService {
 
 
         @GET("random.php")
-        Call<MealsResponse> getRandomMeal();
+        Single<MealsResponse> getRandomMeal();
 
         @GET("filter.php")
         Observable<MealsResponse> getMealsByCategory(@Query("c") String category);
@@ -29,21 +28,21 @@ public interface MealService {
         Observable<MealsResponse> getMealsByIngredient(@Query("i") String ingredient);
 
         @GET("categories.php")
-        Call<CategoriesResponse> getAllCategories();
+        Observable<CategoriesResponse> getAllCategories();
 
         @GET("list.php?c=list")
         Call<CategoryListResponse> getCategoriesList();
 
         @GET("list.php?a=list")
-        Call<AreaListResponse> getAreasList();
+        Observable<AreaListResponse> getAreasList();
 
         @GET("list.php?i=list")
-        Call<IngredientListResponse> getIngredientsList();
+        Observable<IngredientListResponse> getIngredientsList();
 
         @GET("search.php")
         Observable<MealsResponse> searchMeals(@Query("s") String mealName);
 
         @GET("lookup.php")
-        Call<MealResponse> getMealDetails(@Query("i") String mealId);
+        Observable<MealResponse> getMealDetails(@Query("i") String mealId);
     }
 
