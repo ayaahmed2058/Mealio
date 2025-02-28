@@ -19,30 +19,30 @@ public interface MealService {
         Single<MealsResponse> getRandomMeal();
 
         @GET("filter.php")
-        Observable<MealsResponse> getMealsByCategory(@Query("c") String category);
+        Single<MealsResponse> getMealsByCategory(@Query("c") String category);
 
         @GET("filter.php")
-        Observable<MealsResponse> getMealsByArea(@Query("a") String area);
+        Single<MealsResponse> getMealsByArea(@Query("a") String area);
 
         @GET("filter.php")
-        Observable<MealsResponse> getMealsByIngredient(@Query("i") String ingredient);
+        Single<MealsResponse> getMealsByIngredient(@Query("i") String ingredient);
 
         @GET("categories.php")
-        Observable<CategoriesResponse> getAllCategories();
+        Single<CategoriesResponse> getAllCategories();
 
         @GET("list.php?c=list")
-        Call<CategoryListResponse> getCategoriesList();
+        Single<CategoryListResponse> getCategoriesList();
 
         @GET("list.php?a=list")
-        Observable<AreaListResponse> getAreasList();
+        Single<AreaListResponse> getAreasList();
 
         @GET("list.php?i=list")
-        Observable<IngredientListResponse> getIngredientsList();
+        Single<IngredientListResponse> getIngredientsList();
 
         @GET("search.php")
-        Observable<MealsResponse> searchMeals(@Query("s") String mealName);
+        Single<MealsResponse> searchMeals(@Query("s") String mealName);
 
         @GET("lookup.php")
-        Observable<MealResponse> getMealDetails(@Query("i") String mealId);
+        Single<MealResponse> getMealDetails(@Query("i") String mealId);
     }
 

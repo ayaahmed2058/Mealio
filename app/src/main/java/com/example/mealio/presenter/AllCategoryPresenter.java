@@ -7,6 +7,7 @@ import com.example.mealio.model.pojo.CategoriesResponse;
 import com.example.mealio.view.mainScreen.Home.allCategoriesView.CategoryView;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AllCategoryPresenter {
@@ -21,7 +22,7 @@ public class AllCategoryPresenter {
 
     @SuppressLint("CheckResult")
     public void getAllCategories(){
-        Observable<CategoriesResponse> categoriesResponseObservable = mealRepository.getAllCategories();
+        Single<CategoriesResponse> categoriesResponseObservable = mealRepository.getAllCategories();
         categoriesResponseObservable.subscribeOn(Schedulers.io())
                 .map(item -> item.getCategories())
                 .observeOn(AndroidSchedulers.mainThread())

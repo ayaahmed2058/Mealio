@@ -38,33 +38,33 @@ public class MealRepository {
        return mealRemoteDataSourceInterface.makeNetworkCallBackForRandomMeal();
     }
 
-    public Observable<AreaListResponse> getALLAreas (){
+    public Single<AreaListResponse> getALLAreas (){
         return mealRemoteDataSourceInterface.makeNetworkCallBackForAllAreas();
     }
 
-    public Observable<CategoriesResponse> getAllCategories (){
+    public Single<CategoriesResponse> getAllCategories (){
         return mealRemoteDataSourceInterface.makeNetworkCallBackForAllCategories();
     }
 
-    public Observable<IngredientListResponse> getAllIngredient(){
+    public Single<IngredientListResponse> getAllIngredient(){
         return mealRemoteDataSourceInterface.makeNetworkCallBackForAllIngredient();
     }
 
-    public Observable<MealResponse> getMealDetails (String mealID){
+    public Single<MealResponse> getMealDetails (String mealID){
         return mealRemoteDataSourceInterface.makeNetworkCallBackForMealDetails( mealID);
     }
 
-    public Observable<MealsResponse> filterByArea(String areaID){
+    public Single<MealsResponse> filterByArea(String areaID){
         return mealRemoteDataSourceInterface.filterByAreaNetworkCallBack(areaID);
     }
-    public Observable<MealsResponse> filterByCategory(String categoryID){
+    public Single<MealsResponse> filterByCategory(String categoryID){
         return mealRemoteDataSourceInterface.filterByCategoryNetworkCallBack(categoryID);
     }
-    public Observable<MealsResponse> filterByIngredient(String ingredientID){
+    public Single<MealsResponse> filterByIngredient(String ingredientID){
         return mealRemoteDataSourceInterface.filterByIngredientNetworkCallBack(ingredientID);
     }
 
-    public Observable<MealsResponse> searchMeals(String mealName) {
+    public Single<MealsResponse> searchMeals(String mealName) {
         return mealRemoteDataSourceInterface.searchForMeal(mealName);
     }
 

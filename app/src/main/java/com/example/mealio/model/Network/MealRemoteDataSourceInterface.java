@@ -13,13 +13,13 @@ import retrofit2.Call;
 public interface MealRemoteDataSourceInterface {
 
     Single<MealsResponse> makeNetworkCallBackForRandomMeal ();
-    Observable<AreaListResponse> makeNetworkCallBackForAllAreas ();
-    Observable<CategoriesResponse> makeNetworkCallBackForAllCategories();
-    Observable<IngredientListResponse> makeNetworkCallBackForAllIngredient ();
-    Observable<MealResponse> makeNetworkCallBackForMealDetails (String mealID);
+    Single<AreaListResponse> makeNetworkCallBackForAllAreas ();
+    Single<CategoriesResponse> makeNetworkCallBackForAllCategories();
+    Single<IngredientListResponse> makeNetworkCallBackForAllIngredient ();
+    Single<MealResponse> makeNetworkCallBackForMealDetails (String mealID);
 
-    Observable<MealsResponse> filterByCategoryNetworkCallBack (String categoryID);
-    Observable<MealsResponse> filterByAreaNetworkCallBack (String areaID);
-    Observable<MealsResponse> filterByIngredientNetworkCallBack (String ingredientID);
-    Observable<MealsResponse> searchForMeal (String mealName);
+    Single<MealsResponse> filterByCategoryNetworkCallBack (String categoryID);
+    Single<MealsResponse> filterByAreaNetworkCallBack (String areaID);
+    Single<MealsResponse> filterByIngredientNetworkCallBack (String ingredientID);
+    Single<MealsResponse> searchForMeal (String mealName);
 }

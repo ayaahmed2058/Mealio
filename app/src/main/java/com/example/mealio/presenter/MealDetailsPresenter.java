@@ -10,6 +10,7 @@ import com.example.mealio.view.mealDetails.MealDetailsView;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MealDetailsPresenter{
@@ -25,7 +26,7 @@ public class MealDetailsPresenter{
 
     @SuppressLint("CheckResult")
     public void getMealDetails(String mealID){
-        Observable<MealResponse> mealResponseObservable = mealRepository.getMealDetails(mealID);
+        Single<MealResponse> mealResponseObservable = mealRepository.getMealDetails(mealID);
         mealResponseObservable.subscribeOn(Schedulers.io())
                 .map(item -> item.getMeals())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -7,6 +7,7 @@ import com.example.mealio.model.pojo.AreaListResponse;
 import com.example.mealio.view.mainScreen.Home.allAreas.AreaView;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AllAreasPresenter  {
@@ -22,7 +23,7 @@ public class AllAreasPresenter  {
 
     @SuppressLint("CheckResult")
     public void getAllAreas (){
-        Observable<AreaListResponse> allAreas = mealRepository.getALLAreas();
+        Single<AreaListResponse> allAreas = mealRepository.getALLAreas();
         allAreas.subscribeOn(Schedulers.io())
                 .map(item -> item.getMeals())
                 .observeOn(AndroidSchedulers.mainThread())

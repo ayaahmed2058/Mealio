@@ -42,42 +42,42 @@ public class MealRemoteDataSourceImp implements MealRemoteDataSourceInterface {
     }
 
     @Override
-    public Observable<AreaListResponse> makeNetworkCallBackForAllAreas() {
+    public Single<AreaListResponse> makeNetworkCallBackForAllAreas() {
         return mealService.getAreasList();
     }
 
     @Override
-    public Observable<CategoriesResponse> makeNetworkCallBackForAllCategories( ) {
+    public Single<CategoriesResponse> makeNetworkCallBackForAllCategories( ) {
         return mealService.getAllCategories();
     }
 
     @Override
-    public Observable<IngredientListResponse> makeNetworkCallBackForAllIngredient() {
+    public Single<IngredientListResponse> makeNetworkCallBackForAllIngredient() {
         return mealService.getIngredientsList();
     }
 
     @Override
-    public Observable<MealResponse> makeNetworkCallBackForMealDetails(String mealID) {
+    public Single<MealResponse> makeNetworkCallBackForMealDetails(String mealID) {
         return mealService.getMealDetails(mealID);
     }
 
     @Override
-    public Observable<MealsResponse> filterByCategoryNetworkCallBack(String categoryID) {
+    public Single<MealsResponse> filterByCategoryNetworkCallBack(String categoryID) {
         return mealService.getMealsByCategory(categoryID);
     }
 
     @Override
-    public Observable<MealsResponse> filterByAreaNetworkCallBack(String areaID) {
+    public Single<MealsResponse> filterByAreaNetworkCallBack(String areaID) {
         return mealService.getMealsByArea(areaID);
     }
 
     @Override
-    public Observable<MealsResponse> filterByIngredientNetworkCallBack(String ingredientID) {
+    public Single<MealsResponse> filterByIngredientNetworkCallBack(String ingredientID) {
         return mealService.getMealsByIngredient(ingredientID);
     }
 
     @Override
-    public Observable<MealsResponse> searchForMeal(String mealName) {
+    public Single<MealsResponse> searchForMeal(String mealName) {
         return mealService.searchMeals(mealName);
     }
 }
