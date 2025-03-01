@@ -1,6 +1,7 @@
 package com.example.mealio.view.mainScreen.star;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,8 @@ import java.util.List;
 
 public class StarMealDetailsAdapter extends RecyclerView.Adapter<StarMealDetailsAdapter.MealDetailsViewHolder> {
     private List<Meal> mealList = new ArrayList<>();
-    private OnStarClickListener onStarClickListener;
 
-    public StarMealDetailsAdapter(OnStarClickListener onStarClickListener){
-        this.onStarClickListener = onStarClickListener;
+    public StarMealDetailsAdapter(){
     }
 
     @NonNull
@@ -54,16 +53,7 @@ public class StarMealDetailsAdapter extends RecyclerView.Adapter<StarMealDetails
 
         holder.ingredientMealDetailsAdapter.updateData(meal.getIngredientList());
 
-        if (!meal.getStrYoutube().isEmpty() && meal.getStrYoutube() != null) {
-            String[] split = meal.getStrYoutube().split("=");
-            holder.youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-                @Override
-                public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                    String videoId = split[1];
-                    youTubePlayer.cueVideo(videoId, 0);
-                }
-            });
-        }
+
     }
 
     @Override
@@ -80,7 +70,6 @@ public class StarMealDetailsAdapter extends RecyclerView.Adapter<StarMealDetails
     static class MealDetailsViewHolder extends RecyclerView.ViewHolder {
         private ImageView mealImage ;
         private TextView mealName, mealCategory, mealLocation, mealInstructions;
-        private YouTubePlayerView youTubePlayerView;
         private RecyclerView ingredientRecyclerView;
         private IngredientMealDetailsAdapter ingredientMealDetailsAdapter;
 
@@ -89,9 +78,8 @@ public class StarMealDetailsAdapter extends RecyclerView.Adapter<StarMealDetails
             mealName = itemView.findViewById(R.id.meal_name);
             mealCategory = itemView.findViewById(R.id.meal_category);
             mealLocation = itemView.findViewById(R.id.meal_location);
-            mealInstructions = itemView.findViewById(R.id.meal_steps);
+            mealInstructions = itemView.findViewById(R.id.meal_description);
             mealImage = itemView.findViewById(R.id.meal_img);
-            youTubePlayerView = itemView.findViewById(R.id.IngredientVideo);
             ingredientRecyclerView = itemView.findViewById(R.id.recycler_meal_ingredient);
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false);

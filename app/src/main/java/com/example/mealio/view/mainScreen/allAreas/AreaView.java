@@ -1,4 +1,4 @@
-package com.example.mealio.view.mainScreen.Home.allAreas;
+package com.example.mealio.view.mainScreen.allAreas;
 
 import com.example.mealio.model.pojo.AreaListItem;
 

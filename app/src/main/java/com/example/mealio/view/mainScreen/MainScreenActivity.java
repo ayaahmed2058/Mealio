@@ -16,6 +16,7 @@ import com.example.mealio.view.credentialScreen.AuthenticationActivity;
 import com.example.mealio.view.mainScreen.star.StarFragment;
 import com.example.mealio.view.mealDetails.MealDetailsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainScreenActivity extends AppCompatActivity {
@@ -37,6 +38,8 @@ public class MainScreenActivity extends AppCompatActivity {
         NavController navController = navHostFragment.getNavController();
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED);
+
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         restrictGuestAccess();
@@ -47,9 +50,9 @@ public class MainScreenActivity extends AppCompatActivity {
             int itemId = item.getItemId();
 
             if (firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isAnonymous()) {
-                if (itemId == R.id.starFragment || itemId == R.id.planFragment) {
+                if (itemId == R.id.starFragment || itemId == R.id.planFragment || itemId == R.id.ProfileFragment) {
                     signupToGetMoreFeature();
-                    Toast.makeText(this, "Please sign in to access favorites", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Please sign in to access more Feature", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }

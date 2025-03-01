@@ -4,13 +4,16 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.mealio.R;
@@ -21,6 +24,10 @@ import com.example.mealio.model.pojo.MealSummary;
 import com.example.mealio.presenter.SearchPresenter;
 import com.example.mealio.view.mainScreen.Home.HomeFragmentDirections;
 import com.example.mealio.view.mainScreen.Home.OnMealClickListener;
+import com.example.mealio.view.mainScreen.Utils;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import androidx.appcompat.widget.SearchView;
@@ -30,10 +37,11 @@ import io.reactivex.rxjava3.core.Observable;
 public class SearchFragment extends Fragment implements SearchViewIn, OnMealClickListener {
 
     private SearchView searchView;
-    private ProgressBar progressBar;
-    private RecyclerView recyclerView;
+//    private ProgressBar progressBar;
     private MealAdapter adapter;
     private SearchPresenter presenter;
+    private ImageView internetConnection;
+    private Group searchGroup;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -50,11 +58,16 @@ public class SearchFragment extends Fragment implements SearchViewIn, OnMealClic
         super.onViewCreated(view, savedInstanceState);
 
         searchView = view.findViewById(R.id.search_input);
-        progressBar = view.findViewById(R.id.progressBar);
-        recyclerView = view.findViewById(R.id.recyclerView);
+//        progressBar = view.findViewById(R.id.progressBar);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new MealAdapter(this);
+        internetConnection = view.findViewById(R.id.internetConnection);
+        searchGroup = view.findViewById(R.id.search_group);
+
+        checkInternetConnection();
+
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext() , 2));
+        adapter = new MealAdapter(getActivity(), new ArrayList<>(),this);
         recyclerView.setAdapter(adapter);
 
         presenter = new SearchPresenter(this, MealRepository.getInstance(MealLocalDataSourceImp.getInstance(getContext()),
@@ -85,17 +98,17 @@ public class SearchFragment extends Fragment implements SearchViewIn, OnMealClic
 
     @Override
     public void showLoading() {
-        progressBar.setVisibility(View.VISIBLE);
+//        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-        progressBar.setVisibility(View.GONE);
+//        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void showMeals(List<MealSummary> meals) {
-        adapter.setMeals(meals);
+        adapter.updateData(meals);
     }
 
     @Override
@@ -105,8 +118,23 @@ public class SearchFragment extends Fragment implements SearchViewIn, OnMealClic
 
     @Override
     public void OnMealClicked(String id) {
-        SearchFragmentDirections.ActionSearchFragmentToMealDetailsFragment action =
-                SearchFragmentDirections.actionSearchFragmentToMealDetailsFragment(id,"SearchFragment", "DetailsFragment");
-        Navigation.findNavController(searchView).navigate(action);
+        if (Utils.isNetworkAvailable(requireContext())) {
+            SearchFragmentDirections.ActionSearchFragmentToMealDetailsFragment action =
+                    SearchFragmentDirections.actionSearchFragmentToMealDetailsFragment(id,"SearchFragment","MealDetailsFragment");
+            Navigation.findNavController(searchView).navigate(action);
+        } else {
+            Snackbar.make(requireView(), "No internet Connection!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void checkInternetConnection() {
+        if (Utils.isNetworkAvailable(requireContext())) {
+            internetConnection.setVisibility(View.GONE);
+            searchGroup.setVisibility(View.VISIBLE);
+        } else {
+            internetConnection.setVisibility(View.VISIBLE);
+            searchGroup.setVisibility(View.GONE);
+            Snackbar.make(requireView(), "No internet Connection!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

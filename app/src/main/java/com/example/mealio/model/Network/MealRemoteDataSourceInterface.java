@@ -22,4 +22,6 @@ public interface MealRemoteDataSourceInterface {
     Single<MealsResponse> filterByAreaNetworkCallBack (String areaID);
     Single<MealsResponse> filterByIngredientNetworkCallBack (String ingredientID);
     Single<MealsResponse> searchForMeal (String mealName);
+
+    Single<MealsResponse> searchForMealStartsWithA (String letter_A);
 }

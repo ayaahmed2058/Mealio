@@ -2,6 +2,7 @@ package com.example.mealio.model;
 
 
 import com.example.mealio.model.Network.MealRemoteDataSourceInterface;
+import com.example.mealio.model.db.BackupMeals;
 import com.example.mealio.model.db.Meal;
 import com.example.mealio.model.db.MealLocalDataSourceInterface;
 import com.example.mealio.model.db.WeekPlanner;
@@ -81,6 +82,10 @@ public class MealRepository {
         return mealLocalDataSourceInterface.deleteMeal(meal);
     }
 
+    public Observable<Meal> getMealDetailsById (String mealId){
+        return mealLocalDataSourceInterface.getMealById(mealId);
+    }
+
     public Observable<List<WeekPlanner>> getStoredPlanningMeals (){
         return mealLocalDataSourceInterface.getPlanningMeals();
     }
@@ -91,6 +96,29 @@ public class MealRepository {
 
     public Completable deletePlanningMeal (WeekPlanner meal){
         return mealLocalDataSourceInterface.deletePlaningMeal(meal);
+    }
+
+    public Single<MealsResponse> getMealsStartsWith_A(String letter){
+        return mealRemoteDataSourceInterface.searchForMealStartsWithA(letter);
+    }
+
+    public Completable insertAllMeal(List<Meal> meals){
+        return mealLocalDataSourceInterface.insertAllMeals(meals);
+    }
+    public Completable insertAllPlanningMeal(List<WeekPlanner> meals){
+        return mealLocalDataSourceInterface.insertAllPlanningMeals(meals);
+    }
+
+    public Completable clearAllStarMeals(){
+        return mealLocalDataSourceInterface.clearAllStarMeal();
+    }
+
+    public Completable clearAllPlanningMeals(){
+        return mealLocalDataSourceInterface.clearAllPlanningMeal();
+    }
+
+    public Completable addAllStarMealToFireStore (String userId, List<Meal> meals){
+       return mealLocalDataSourceInterface.addAllStarMealToFireStore(userId,meals);
     }
 
 

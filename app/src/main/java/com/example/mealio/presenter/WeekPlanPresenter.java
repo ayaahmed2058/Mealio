@@ -22,8 +22,8 @@ public class WeekPlanPresenter {
 
     @SuppressLint("CheckResult")
     public void getPlannedMeal(){
-        Observable<List<WeekPlanner>> storedProduct= mealRepository.getStoredPlanningMeals();
-        storedProduct.subscribeOn(Schedulers.io())
+        Observable<List<WeekPlanner>> storedPlanningMeals= mealRepository.getStoredPlanningMeals();
+        storedPlanningMeals.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         list -> {
@@ -38,8 +38,8 @@ public class WeekPlanPresenter {
 
     @SuppressLint("CheckResult")
     public void deleteFromPlan (WeekPlanner meal){
-        Completable deleteProduct = mealRepository.deletePlanningMeal(meal);
-        deleteProduct.subscribeOn(Schedulers.io())
+        Completable deletePlanningMeal = mealRepository.deletePlanningMeal(meal);
+        deletePlanningMeal.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         () -> Log.i("TAG", "Meal deleted Successfully From Plan"),

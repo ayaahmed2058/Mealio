@@ -7,13 +7,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mealio.R;
 import com.example.mealio.model.pojo.MealSummary;
 import com.example.mealio.view.mainScreen.Home.OnMealClickListener;
-
+import com.example.mealio.view.mainScreen.allAreas.AreasAdapter;
 import java.util.List;
 
 
@@ -40,6 +41,7 @@ public class RandomMealAdapter extends RecyclerView.Adapter<RandomMealAdapter.Ho
         MealSummary mealSummary = mealSummaries.get(position);
         holder.mealName.setText(mealSummary.getStrMeal());
         holder.location.setText(mealSummary.getStrArea());
+        holder.category.setText(mealSummary.getStrCategory());
 
         Glide.with(context)
                 .load(mealSummary.getStrMealThumb()).apply(new RequestOptions().override(200,200))
@@ -47,12 +49,27 @@ public class RandomMealAdapter extends RecyclerView.Adapter<RandomMealAdapter.Ho
                 .error(R.drawable.error)
                 .into(holder.mealImage);
 
-        holder.mealImage.setOnClickListener(new View.OnClickListener() {
+        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onMealClickListener.OnMealClicked(mealSummary.getIdMeal());
             }
         });
+
+
+        String countryCode = new AreasAdapter().getCountryCode(mealSummary.getStrArea());
+
+        if (countryCode != null) {
+            String flagUrl = "https://flagcdn.com/w320/" + countryCode + ".png";
+
+            Glide.with(context)
+                    .load(flagUrl)
+                    .placeholder(R.drawable.flag_unknown)
+                    .error(R.drawable.error)
+                    .into(holder.locationImage);
+        } else {
+            holder.locationImage.setImageResource(R.drawable.flag_unknown);
+        }
 
     }
 
@@ -67,14 +84,18 @@ public class RandomMealAdapter extends RecyclerView.Adapter<RandomMealAdapter.Ho
     }
 
     public static class HomeViewHolder extends RecyclerView.ViewHolder {
-        TextView mealName, location;
-        ImageView mealImage;
+        TextView mealName, location,category;
+        ImageView mealImage, locationImage;
+        ConstraintLayout constraintLayout;
 
         public HomeViewHolder(@NonNull View itemView) {
             super(itemView);
             mealName = itemView.findViewById(R.id.meal_name);
             location = itemView.findViewById(R.id.meal_location);
             mealImage = itemView.findViewById(R.id.meal_img);
+            category = itemView.findViewById(R.id.meal_category);
+            locationImage = itemView.findViewById(R.id.meal_locationImg);
+            constraintLayout = itemView.findViewById(R.id.meal_layout);
 
         }
 

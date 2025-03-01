@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke android:color="@color/colorPrimary" android:width="2dp" android:dashGap="@dimen/cardview_compat_inset_shadow"
+        android:dashWidth="@dimen/cardview_compat_inset_shadow"/>
+
+    <corners android:topRightRadius="20dp" android:topLeftRadius="20dp"
+        android:bottomLeftRadius="20dp" android:bottomRightRadius="60dp"/>
+    <solid android:color="@color/colorAccent_50"/>
+
+</shape>

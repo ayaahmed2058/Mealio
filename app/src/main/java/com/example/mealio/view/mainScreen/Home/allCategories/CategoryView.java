@@ -1,7 +1,6 @@
-package com.example.mealio.view.mainScreen.Home.allCategoriesView;
+package com.example.mealio.view.mainScreen.Home.allCategories;
 
 import com.example.mealio.model.pojo.Category;
-
 import java.util.List;
 
 public interface CategoryView {

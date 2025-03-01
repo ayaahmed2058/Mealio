@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="2dp"
+    android:padding="5dp"
+    android:background="@drawable/component_bg_style">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/meal_img"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:elevation="2dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
@@ -24,31 +23,32 @@
         android:id="@+id/tv_ingredientName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:gravity="center"
         android:maxLines="2"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/meal_img"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/meal_img"
-        app:layout_constraintTop_toBottomOf="@+id/meal_img"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_img"
+        app:layout_constraintEnd_toStartOf="@+id/tv_ingredientMeasure"
+        app:layout_constraintStart_toEndOf="@+id/meal_img"
+        app:layout_constraintTop_toTopOf="@+id/meal_img"
         tools:text="Apple" />
 
     <TextView
         android:id="@+id/tv_ingredientMeasure"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:maxLines="2"
-        android:textAlignment="center"
         android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_ingredientName"
-        app:layout_constraintStart_toStartOf="@+id/tv_ingredientName"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ingredientName"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ingredientName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_ingredientName"
+        app:layout_constraintTop_toTopOf="@+id/tv_ingredientName"
         tools:text="1 sliced" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

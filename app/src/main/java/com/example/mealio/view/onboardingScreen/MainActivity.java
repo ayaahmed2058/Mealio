@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         OnboardingItem projectName = new OnboardingItem();
         projectName.setTitle(getString(R.string.app_name));
         projectName.setDescription(getString(R.string.plan_explore_enjoy_your_favorite_meals));
-        projectName.setImage(R.raw.animation_mealio);
+        projectName.setImage(R.raw.animation_cook);
         projectName.setLottie(true);
 
         OnboardingItem mealDetails = new OnboardingItem();

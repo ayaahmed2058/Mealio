@@ -4,8 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -55,8 +57,8 @@ public class PlanFragment extends Fragment implements PlanView, OnDeletePlanClic
         weekPlanPresenter = new WeekPlanPresenter(this, MealRepository.getInstance(MealLocalDataSourceImp.getInstance(getContext()),
                 MealRemoteDataSourceImp.getInstance()));
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        planMealsRecyclerView.setLayoutManager(gridLayoutManager);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        planMealsRecyclerView.setLayoutManager(linearLayoutManager);
         planMealsRecyclerView.setAdapter(planMealAdapter);
 
         weekPlanPresenter.getPlannedMeal();
@@ -64,10 +66,17 @@ public class PlanFragment extends Fragment implements PlanView, OnDeletePlanClic
 
     @Override
     public void deleteFromPlan(WeekPlanner meal) {
-        weekPlanPresenter.deleteFromPlan(meal);
-        planMealAdapter.notifyDataSetChanged();
-        Snackbar.make(planMealsRecyclerView,"Meal Was deleted successfully From Plan" , Snackbar.LENGTH_LONG).show();;
-    }
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Confirm Deletion")
+                .setMessage("Are you sure you want to delete this meal?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    weekPlanPresenter.deleteFromPlan(meal);
+                    planMealAdapter.notifyDataSetChanged();
+                    Snackbar.make(planMealsRecyclerView,"Meal Was deleted successfully From Plan" , Snackbar.LENGTH_LONG).show();;
+                })
+                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                .show();
+        }
 
     @Override
     public void setMeals(List<WeekPlanner> meals) {

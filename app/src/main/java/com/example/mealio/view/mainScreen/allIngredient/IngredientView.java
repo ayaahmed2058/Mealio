@@ -1,4 +1,4 @@
-package com.example.mealio.view.mainScreen.Home.allIngredient;
+package com.example.mealio.view.mainScreen.allIngredient;
 
 import com.example.mealio.model.pojo.Category;
 import com.example.mealio.model.pojo.IngredientListItem;

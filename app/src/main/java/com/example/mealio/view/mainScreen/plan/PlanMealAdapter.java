@@ -8,15 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.mealio.R;
-import com.example.mealio.model.db.Meal;
 import com.example.mealio.model.db.WeekPlanner;
-import com.example.mealio.view.mainScreen.Home.OnMealClickListener;
-import com.example.mealio.view.mainScreen.star.OnDeleteClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +29,7 @@ public class PlanMealAdapter extends RecyclerView.Adapter<PlanMealAdapter.PlanVi
     @NonNull
     @Override
     public PlanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.star_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.meal_plan_item, parent, false);
         return new PlanViewHolder(view);
     }
 
@@ -46,6 +43,7 @@ public class PlanMealAdapter extends RecyclerView.Adapter<PlanMealAdapter.PlanVi
 
         Glide.with(holder.mealImage.getContext())
                 .load(meal.getMealThump())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.mealImage);
 
 
@@ -75,10 +73,10 @@ public class PlanMealAdapter extends RecyclerView.Adapter<PlanMealAdapter.PlanVi
         public PlanViewHolder(@NonNull View itemView) {
             super(itemView);
             mealName = itemView.findViewById(R.id.meal_name);
-            date = itemView.findViewById(R.id.meal_category);
-            mealType = itemView.findViewById(R.id.meal_location);
+            date = itemView.findViewById(R.id.tv_date);
+            mealType = itemView.findViewById(R.id.tv_mealType);
             mealImage = itemView.findViewById(R.id.meal_img);
-            delete_img = itemView.findViewById(R.id.colse_img);
+            delete_img = itemView.findViewById(R.id.delete_img);
         }
     }
 }

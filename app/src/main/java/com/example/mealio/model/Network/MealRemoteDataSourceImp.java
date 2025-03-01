@@ -80,4 +80,9 @@ public class MealRemoteDataSourceImp implements MealRemoteDataSourceInterface {
     public Single<MealsResponse> searchForMeal(String mealName) {
         return mealService.searchMeals(mealName);
     }
+
+    @Override
+    public Single<MealsResponse> searchForMealStartsWithA(String letter_A) {
+        return mealService.searchMealsByFirstLetter(letter_A);
+    }
 }

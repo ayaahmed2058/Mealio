@@ -1,14 +1,22 @@
 package com.example.mealio.view.credentialScreen;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +26,12 @@ import androidx.transition.Scene;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 import com.example.mealio.R;
+import com.example.mealio.model.MealRepository;
+import com.example.mealio.model.Network.MealRemoteDataSourceImp;
+import com.example.mealio.model.db.MealLocalDataSourceImp;
+import com.example.mealio.presenter.AuthPresenter;
+import com.example.mealio.presenter.BackupPresenter;
+import com.example.mealio.presenter.ProfilePresenter;
 import com.example.mealio.view.mainScreen.MainScreenActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -41,12 +55,14 @@ public class AuthenticationActivity extends AppCompatActivity {
     private TextView skip;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
         //TODO make shared pref for onboarding screen
+
 
         authManager = new AuthManager(this);
         container = findViewById(R.id.container);
@@ -209,5 +225,6 @@ public class AuthenticationActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
 }

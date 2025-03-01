@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -61,6 +62,9 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.9.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation ("com.google.android.gms:play-services-auth:20.5.0")
+    implementation ("com.google.firebase:firebase-storage:20.3.0")
+
+
 
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -90,5 +94,10 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.8.9")
 
 
+        implementation ("com.google.firebase:firebase-database:20.2.2")
+        implementation ("com.google.firebase:firebase-auth:22.1.1")
+
+
+    
 
 }

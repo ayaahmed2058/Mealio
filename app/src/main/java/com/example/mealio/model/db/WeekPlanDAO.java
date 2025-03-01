@@ -16,9 +16,15 @@ public interface WeekPlanDAO {
     @Query("SELECT * from mealPlanner_table")
     Observable<List<WeekPlanner>> getStoredPlanningMeal();
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insertPlanningMeal(WeekPlanner meal);
 
     @Delete
     Completable deletePlanningMeal(WeekPlanner meal);
+
+    @Query("DELETE FROM mealPlanner_table")
+    Completable clearTable();
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    Completable insertAllPlanningMeals(List<WeekPlanner> meals);
 }

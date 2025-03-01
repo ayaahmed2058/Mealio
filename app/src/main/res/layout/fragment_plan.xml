@@ -28,12 +28,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/guidelineButton"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintTop_toBottomOf="@id/textView"
-        tools:listitem="@layout/star_item" />
+        tools:listitem="@layout/meal_plan_item" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineStart"

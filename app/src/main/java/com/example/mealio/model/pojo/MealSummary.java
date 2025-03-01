@@ -5,6 +5,7 @@ public class MealSummary {
     private String strMeal;
     private String strMealThumb;
     private String strArea;
+    private String strCategory;
 
     public String getIdMeal() {
         return idMeal;
@@ -20,6 +21,10 @@ public class MealSummary {
 
     public String getStrArea() {
         return strArea;
+    }
+
+    public String getStrCategory() {
+        return strCategory;
     }
 }
 

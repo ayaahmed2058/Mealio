@@ -52,13 +52,12 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView, On
 
         String mealID = MealDetailsFragmentArgs.fromBundle(getArguments()).getMealID();
         String sourceScreen = MealDetailsFragmentArgs.fromBundle(getArguments()).getSearchMealID();
-        String destinationScreen = MealDetailsFragmentArgs.fromBundle(getArguments()).getStarMealID();
 
         Log.d("MealDetailsFragment", "Navigated from: " + sourceScreen);
 
 
         mealDetailsRecyclerView = view.findViewById(R.id.meal_details);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mealDetailsRecyclerView.setLayoutManager(layoutManager);
 
         mealDetailsAdapter = new MealDetailsAdapter(this, this);
@@ -77,10 +76,9 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView, On
         mealDetailsAdapter.updateData(meals);
         mealDetailsAdapter.notifyDataSetChanged();
     }
-
     @Override
     public void setErrorMessage(String errorMessage) {
-
+        Snackbar.make(mealDetailsRecyclerView, errorMessage, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -88,7 +86,6 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView, On
         mealDetailsPresenter.addToStar(meal);
         mealDetailsAdapter.notifyDataSetChanged();
         Snackbar.make(mealDetailsRecyclerView, "Meal is Added successfully", Snackbar.LENGTH_LONG).show();
-        ;
 
     }
 
@@ -114,7 +111,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsView, On
     }
 
     private void showMealTypeDialog(String mealId,String mealName , String mealThumb, String selectedDate) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.CustomAlertDialog);
         builder.setTitle("Choose The Meal Type");
 
         String[] mealTypes = {"Breakfast", "Lunch", "Dinner"};

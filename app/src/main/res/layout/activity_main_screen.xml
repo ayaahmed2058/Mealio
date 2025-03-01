@@ -14,21 +14,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_bar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
         app:layout_constraintTop_toTopOf="@+id/guidelineTop"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
-
-<!--    <androidx.fragment.app.FragmentContainerView-->
-<!--        android:id="@+id/fragmentContainerView"-->
-<!--        android:name="com.example.mealio.view.mainScreen.Home.HomeFragment"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_bar"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guidelineStart"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guidelineTop" />-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_bar"
@@ -37,11 +27,10 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_navigation_bg"
         android:elevation="8dp"
-        app:itemIconSize="24dp"
+        app:itemIconSize="26dp"
         app:itemIconTint="@color/black"
-        app:itemRippleColor="@color/colorAccent"
+        app:itemRippleColor="@color/white"
         app:itemTextColor="@color/black"
-        android:textDirection="anyRtl"
         app:layout_constraintBottom_toTopOf="@+id/guidelineButton"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"

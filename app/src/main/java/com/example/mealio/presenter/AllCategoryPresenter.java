@@ -4,9 +4,8 @@ import android.annotation.SuppressLint;
 import android.util.Log;
 import com.example.mealio.model.MealRepository;
 import com.example.mealio.model.pojo.CategoriesResponse;
-import com.example.mealio.view.mainScreen.Home.allCategoriesView.CategoryView;
+import com.example.mealio.view.mainScreen.Home.allCategories.CategoryView;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -36,6 +35,5 @@ public class AllCategoryPresenter {
                         }
                 );
     }
-
 
 }

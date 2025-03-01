@@ -49,6 +49,11 @@ public class MealLocalDataSourceImp implements MealLocalDataSourceInterface {
     }
 
     @Override
+    public Observable<Meal> getMealById(String mealId) {
+        return mealDAO.getMealById(mealId);
+    }
+
+    @Override
     public Completable addPlanningMeal(WeekPlanner meal) {
         return weekPlanDAO.insertPlanningMeal(meal);
     }
@@ -62,4 +67,31 @@ public class MealLocalDataSourceImp implements MealLocalDataSourceInterface {
     public Completable deletePlaningMeal(WeekPlanner meal) {
         return weekPlanDAO.deletePlanningMeal(meal);
     }
+
+    @Override
+    public Completable insertAllMeals(List<Meal> meals) {
+        return mealDAO.insertAllMeals(meals);
+    }
+
+    @Override
+    public Completable insertAllPlanningMeals(List<WeekPlanner> weekPlanners) {
+        return weekPlanDAO.insertAllPlanningMeals(weekPlanners);
+    }
+
+    @Override
+    public Completable clearAllStarMeal() {
+        return mealDAO.clearTable();
+    }
+
+    @Override
+    public Completable clearAllPlanningMeal() {
+        return weekPlanDAO.clearTable();
+    }
+
+    @Override
+    public Completable addAllStarMealToFireStore(String userId, List<Meal> meals) {
+        return new MealFireStore().addFavoritesToFireStore(userId , meals);
+    }
+
+
 }

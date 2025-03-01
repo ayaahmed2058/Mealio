@@ -1,4 +1,4 @@
-package com.example.mealio.view.mainScreen.Home.allIngredient;
+package com.example.mealio.view.mainScreen.allIngredient;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -28,7 +28,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     @NonNull
     @Override
     public IngredientsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.area_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.category_item, parent, false);
         return new IngredientsViewHolder(view);
     }
 

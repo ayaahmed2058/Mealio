@@ -1,4 +1,4 @@
-package com.example.mealio.view.mainScreen.Home.allAreas;
+package com.example.mealio.view.mainScreen.allAreas;
 
 import android.content.Context;
 import android.util.Log;
@@ -28,11 +28,14 @@ public class AreasAdapter extends RecyclerView.Adapter<AreasAdapter.AreasViewHol
         this.context = context;
         this.areaListItems = areaListItems;
     }
+    public AreasAdapter() {
+
+    }
 
     @NonNull
     @Override
     public AreasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.area_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.category_item, parent, false);
         return new AreasViewHolder(view);
     }
 
@@ -83,7 +86,7 @@ public class AreasAdapter extends RecyclerView.Adapter<AreasAdapter.AreasViewHol
         }
     }
 
-    private String getCountryCode(String countryName) {
+    public String getCountryCode(String countryName) {
         Map<String, String> countryCodes = new HashMap<>();
         countryCodes.put("American", "us");
         countryCodes.put("British", "gb");

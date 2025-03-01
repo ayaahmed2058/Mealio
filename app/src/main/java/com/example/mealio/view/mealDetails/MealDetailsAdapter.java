@@ -112,14 +112,14 @@ public class MealDetailsAdapter extends RecyclerView.Adapter<MealDetailsAdapter.
             mealName = itemView.findViewById(R.id.meal_name);
             mealCategory = itemView.findViewById(R.id.meal_category);
             mealLocation = itemView.findViewById(R.id.meal_location);
-            mealInstructions = itemView.findViewById(R.id.meal_steps);
+            mealInstructions = itemView.findViewById(R.id.meal_description);
             mealImage = itemView.findViewById(R.id.meal_img);
             star_img = itemView.findViewById(R.id.star_img);
             calender_img = itemView.findViewById(R.id.calender_img);
             youTubePlayerView = itemView.findViewById(R.id.IngredientVideo);
             ingredientRecyclerView = itemView.findViewById(R.id.recycler_meal_ingredient);
 
-            LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), RecyclerView.VERTICAL, false);
             ingredientRecyclerView.setLayoutManager(layoutManager);
             ingredientMealDetailsAdapter = new IngredientMealDetailsAdapter();
             ingredientRecyclerView.setAdapter(ingredientMealDetailsAdapter);

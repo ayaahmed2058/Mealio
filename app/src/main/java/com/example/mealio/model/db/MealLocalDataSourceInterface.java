@@ -11,9 +11,22 @@ public interface MealLocalDataSourceInterface {
 
     Completable deleteMeal(Meal meal);
 
+    Observable<Meal> getMealById (String mealId);
+
     Completable addPlanningMeal(WeekPlanner meal);
 
     Observable<List<WeekPlanner>> getPlanningMeals();
 
     Completable deletePlaningMeal(WeekPlanner meal);
+
+    Completable insertAllMeals (List<Meal> meals);
+
+    Completable insertAllPlanningMeals (List<WeekPlanner> weekPlanners);
+
+    Completable clearAllStarMeal ();
+
+    Completable clearAllPlanningMeal();
+
+    Completable addAllStarMealToFireStore (String userId, List<Meal> favorites);
+
 }

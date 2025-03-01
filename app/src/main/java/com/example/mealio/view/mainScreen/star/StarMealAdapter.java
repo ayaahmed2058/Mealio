@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.mealio.R;
 import com.example.mealio.model.db.Meal;
 import com.example.mealio.view.mainScreen.Home.OnMealClickListener;
@@ -43,6 +44,7 @@ public class StarMealAdapter extends RecyclerView.Adapter<StarMealAdapter.StarVi
 
         Glide.with(holder.mealImage.getContext())
                 .load(meal.getStrMealThumb())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.mealImage);
 
 
@@ -85,7 +87,7 @@ public class StarMealAdapter extends RecyclerView.Adapter<StarMealAdapter.StarVi
             mealCategory = itemView.findViewById(R.id.meal_category);
             mealLocation = itemView.findViewById(R.id.meal_location);
             mealImage = itemView.findViewById(R.id.meal_img);
-            delete_img = itemView.findViewById(R.id.colse_img);
+            delete_img = itemView.findViewById(R.id.delete_img);
         }
     }
 }

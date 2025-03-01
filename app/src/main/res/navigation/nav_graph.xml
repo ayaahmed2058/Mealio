@@ -25,8 +25,7 @@
         <argument
             android:name="searchMealID"
             app:argType="string" />
-        <argument
-            android:name="starMealID"
+        <argument android:name="starMealDetails"
             app:argType="string" />
     </fragment>
     <fragment
@@ -44,6 +43,9 @@
         android:label="fragment_star"
         tools:layout="@layout/fragment_star" >
         <action
+            android:id="@+id/action_starFragment_to_starMealDetailsFragment"
+            app:destination="@id/starMealDetailsFragment" />
+        <action
             android:id="@+id/action_starFragment_to_mealDetailsFragment"
             app:destination="@id/mealDetailsFragment" />
     </fragment>
@@ -56,4 +58,17 @@
         android:id="@+id/authenticationActivity"
         android:name="com.example.mealio.view.credentialScreen.AuthenticationActivity"
         android:label="AuthenticationActivity" />
+    <fragment
+        android:id="@+id/starMealDetailsFragment"
+        android:name="com.example.mealio.view.mainScreen.star.StarMealDetailsFragment"
+        android:label="StarMealDetailsFragment" >
+        <argument
+            android:name="starMealID"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/ProfileFragment"
+        android:name="com.example.mealio.view.mainScreen.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
