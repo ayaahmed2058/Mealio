@@ -2,7 +2,6 @@ package com.example.mealio.model;
 
 
 import com.example.mealio.model.Network.MealRemoteDataSourceInterface;
-import com.example.mealio.model.db.BackupMeals;
 import com.example.mealio.model.db.Meal;
 import com.example.mealio.model.db.MealLocalDataSourceInterface;
 import com.example.mealio.model.db.WeekPlanner;
@@ -11,6 +10,8 @@ import com.example.mealio.model.pojo.CategoriesResponse;
 import com.example.mealio.model.pojo.IngredientListResponse;
 import com.example.mealio.model.pojo.MealResponse;
 import com.example.mealio.model.pojo.MealsResponse;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.List;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
@@ -22,7 +23,8 @@ public class MealRepository {
     private MealLocalDataSourceInterface mealLocalDataSourceInterface;
     private static MealRepository instance = null;
 
-    private MealRepository(MealLocalDataSourceInterface mealLocalDataSourceInterface, MealRemoteDataSourceInterface mealRemoteDataSourceInterface) {
+
+    private MealRepository(MealLocalDataSourceInterface mealLocalDataSourceInterface, MealRemoteDataSourceInterface mealRemoteDataSourceInterface ) {
         this.mealLocalDataSourceInterface = mealLocalDataSourceInterface;
         this.mealRemoteDataSourceInterface = mealRemoteDataSourceInterface;
     }
@@ -101,26 +103,5 @@ public class MealRepository {
     public Single<MealsResponse> getMealsStartsWith_A(String letter){
         return mealRemoteDataSourceInterface.searchForMealStartsWithA(letter);
     }
-
-    public Completable insertAllMeal(List<Meal> meals){
-        return mealLocalDataSourceInterface.insertAllMeals(meals);
-    }
-    public Completable insertAllPlanningMeal(List<WeekPlanner> meals){
-        return mealLocalDataSourceInterface.insertAllPlanningMeals(meals);
-    }
-
-    public Completable clearAllStarMeals(){
-        return mealLocalDataSourceInterface.clearAllStarMeal();
-    }
-
-    public Completable clearAllPlanningMeals(){
-        return mealLocalDataSourceInterface.clearAllPlanningMeal();
-    }
-
-    public Completable addAllStarMealToFireStore (String userId, List<Meal> meals){
-       return mealLocalDataSourceInterface.addAllStarMealToFireStore(userId,meals);
-    }
-
-
 
 }

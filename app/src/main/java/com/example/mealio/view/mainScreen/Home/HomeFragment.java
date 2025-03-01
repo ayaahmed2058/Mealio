@@ -126,7 +126,7 @@ public class HomeFragment extends Fragment implements MealView, CategoryView, Me
 
         randomMealPresenter.getRandomMeal();
         allCategoryPresenter.getAllCategories();
-        randomMealPresenter.getMealStartedWith_A();
+        randomMealPresenter.getMealStartedWith_F();
 
     }
 

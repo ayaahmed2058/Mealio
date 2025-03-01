@@ -15,10 +15,7 @@ import com.example.mealio.model.MealRepository;
 import com.example.mealio.model.Network.MealRemoteDataSourceImp;
 import com.example.mealio.model.db.Meal;
 import com.example.mealio.model.db.MealLocalDataSourceImp;
-import com.example.mealio.presenter.MealDetailsPresenter;
 import com.example.mealio.presenter.StarMealDetailsPresenter;
-import com.example.mealio.presenter.StarPresenter;
-import com.example.mealio.view.mealDetails.MealDetailsView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;

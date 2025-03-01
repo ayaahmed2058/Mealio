@@ -21,7 +21,6 @@ import com.example.mealio.model.db.Meal;
 import com.example.mealio.model.db.MealLocalDataSourceImp;
 import com.example.mealio.model.db.WeekPlanner;
 import com.example.mealio.presenter.MealDetailsPresenter;
-import com.example.mealio.view.mainScreen.Home.OnMealClickListener;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;

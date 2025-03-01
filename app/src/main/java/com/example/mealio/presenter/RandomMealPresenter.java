@@ -4,11 +4,8 @@ package com.example.mealio.presenter;
 import android.annotation.SuppressLint;
 import android.util.Log;
 import com.example.mealio.model.MealRepository;
-import com.example.mealio.model.pojo.MealSummary;
 import com.example.mealio.model.pojo.MealsResponse;
 import com.example.mealio.view.mainScreen.Home.MealView;
-
-import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -43,7 +40,7 @@ public class RandomMealPresenter {
     }
 
     @SuppressLint("CheckResult")
-    public void getMealStartedWith_A (){
+    public void getMealStartedWith_F(){
 
         Single<MealsResponse> mealsResponseSingle = mealRepository.getMealsStartsWith_A("f");
         mealsResponseSingle.subscribeOn(Schedulers.io())

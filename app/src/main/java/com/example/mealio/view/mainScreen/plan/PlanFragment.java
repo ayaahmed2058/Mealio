@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,9 +18,7 @@ import com.example.mealio.model.MealRepository;
 import com.example.mealio.model.Network.MealRemoteDataSourceImp;
 import com.example.mealio.model.db.MealLocalDataSourceImp;
 import com.example.mealio.model.db.WeekPlanner;
-import com.example.mealio.presenter.StarPresenter;
 import com.example.mealio.presenter.WeekPlanPresenter;
-import com.example.mealio.view.mainScreen.star.StarMealAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;

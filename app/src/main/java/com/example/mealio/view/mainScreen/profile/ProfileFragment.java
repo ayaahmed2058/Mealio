@@ -1,13 +1,13 @@
 package com.example.mealio.view.mainScreen.profile;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +15,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.example.mealio.R;
-import com.example.mealio.model.MealRepository;
-import com.example.mealio.model.Network.MealRemoteDataSourceImp;
-import com.example.mealio.model.db.MealFireStore;
-import com.example.mealio.model.db.MealLocalDataSourceImp;
-import com.example.mealio.presenter.AuthPresenter;
-import com.example.mealio.presenter.ProfilePresenter;
-import com.example.mealio.view.credentialScreen.AuthView;
 import com.example.mealio.view.credentialScreen.AuthenticationActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,7 +25,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 
-public class ProfileFragment extends Fragment   {
+public class ProfileFragment extends Fragment  {
 
     private ImageView userImage;
     private TextView userName, userEmail;
@@ -44,7 +36,6 @@ public class ProfileFragment extends Fragment   {
     private static final int PICK_IMAGE_REQUEST = 1;
     private StorageReference storageReference;
     private String imageUrl = "";
-    private AuthPresenter presenter;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -64,7 +55,6 @@ public class ProfileFragment extends Fragment   {
         userName = view.findViewById(R.id.user_name);
         userEmail = view.findViewById(R.id.user_email);
         btnLogout = view.findViewById(R.id.btn_logout);
-
 
         loadUserProfile();
 

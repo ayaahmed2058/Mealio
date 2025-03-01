@@ -1,6 +1,5 @@
 package com.example.mealio.view.mainScreen.star;
 
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.mealio.R;
 import com.example.mealio.model.MealRepository;
@@ -20,8 +18,6 @@ import com.example.mealio.model.Network.MealRemoteDataSourceImp;
 import com.example.mealio.model.db.Meal;
 import com.example.mealio.model.db.MealLocalDataSourceImp;
 import com.example.mealio.presenter.StarPresenter;
-import com.example.mealio.view.credentialScreen.AuthenticationActivity;
-import com.example.mealio.view.mainScreen.Home.HomeFragmentDirections;
 import com.example.mealio.view.mainScreen.Home.OnMealClickListener;
 import com.example.mealio.view.mainScreen.Utils;
 import com.google.android.material.snackbar.Snackbar;

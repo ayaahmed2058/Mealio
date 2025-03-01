@@ -11,7 +11,7 @@
         android:id="@+id/search_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:constraint_referenced_ids="search_input,progressBar,recyclerView" />
+        app:constraint_referenced_ids="search_input,recyclerView" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_input"
