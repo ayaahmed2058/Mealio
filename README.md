@@ -5,7 +5,7 @@
 ![pic5](https://github.com/user-attachments/assets/2a743f83-9417-4bb4-b895-e3aa4bfd7136)
 
 🍽️ Overview  
-Mealio is an Android application designed to help users **plan their weekly meals** effortlessly. With a seamless experience, users can **explore meal categories, search for specific dishes, receive meal suggestions, and save their favorite meals for offline access.**  
+Mealio is an Android application designed to help users **plan their weekly meals** effortlessly. With a seamless experience, users can **explore meal categories, search for specific dishes, receive meal suggestions, and save their Star meals for offline access.**  
 
 🔗 Powered by [TheMealDB API](https://themealdb.com/api.php).  
 🛠️ Uses **Room Database** for offline storage and **Firebase** for authentication & data synchronization.  
@@ -21,7 +21,7 @@ Features
 
 🔹 Star & Offline Access  
 - **Add or remove** meals from your Star.  
-- **Offline Mode** – View saved favorite meals without an internet connection.   
+- **Offline Mode** – View saved Star meals without an internet connection.   
 
 🔹 Meal Planning  
 - Plan meals for the current week by adding/removing meals.  
@@ -31,7 +31,7 @@ Features
 - **Login/Sign Up via:**  
   - Email & Password  
   - Google 
-  - Guest Mode (browse categories, search, and view Meal of the Day)  
+  - Guest Mode   
 - **Cloud Backup:**  
   - Sync & restore saved meals upon login.  
   - Auto-login after first successful sign-in.
@@ -50,7 +50,7 @@ Each meal includes:
 🛠️ Tech Stack  
 - **Languages:** Java  
 - **Architecture:** MVP
-- Reactive Programming: RxJava
+- **Reactive Programming:** RxJava
 - **Database:** Room Database (for offline storage)  
 - **Authentication & Sync:** Firebase Firestore & Firebase Authentication  
 - **API:** TheMealDB  
