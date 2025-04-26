@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.mealio.view.mainScreen.Home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_authenticationActivity"
+            app:destination="@id/authenticationActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealDetailsFragment"
+        android:name="com.example.mealio.view.mealDetails.MealDetailsFragment"
+        android:label="MealDetailsFragment" >
+        <argument
+            android:name="mealID"
+            app:argType="string" />
+        <argument
+            android:name="searchMealID"
+            app:argType="string" />
+        <argument android:name="starMealDetails"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.mealio.view.mainScreen.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/starFragment"
+        android:name="com.example.mealio.view.mainScreen.star.StarFragment"
+        android:label="fragment_star"
+        tools:layout="@layout/fragment_star" >
+        <action
+            android:id="@+id/action_starFragment_to_starMealDetailsFragment"
+            app:destination="@id/starMealDetailsFragment" />
+        <action
+            android:id="@+id/action_starFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planFragment"
+        android:name="com.example.mealio.view.mainScreen.plan.PlanFragment"
+        android:label="fragment_plan"
+        tools:layout="@layout/fragment_plan" />
+    <activity
+        android:id="@+id/authenticationActivity"
+        android:name="com.example.mealio.view.credentialScreen.AuthenticationActivity"
+        android:label="AuthenticationActivity" />
+    <fragment
+        android:id="@+id/starMealDetailsFragment"
+        android:name="com.example.mealio.view.mainScreen.star.StarMealDetailsFragment"
+        android:label="StarMealDetailsFragment" >
+        <argument
+            android:name="starMealID"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/ProfileFragment"
+        android:name="com.example.mealio.view.mainScreen.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

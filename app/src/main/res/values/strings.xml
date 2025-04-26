@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Mealio</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="plan_explore_enjoy_your_favorite_meals"><![CDATA[Plan, Explore & Enjoy Your Favorite Meals!]]></string>
+    <string name="a_delicious_journey_of_flavors">A Delicious Journey of Flavors!</string>
+    <string name="discover_your_meal_s_ingredients_step_by_step_preparation_and_watch_the_video_effortlessly">Discover your meal’s ingredients, step-by-step preparation, and watch the video effortlessly!</string>
+    <string name="your_meals_your_way">Your Meals, Your Way!</string>
+    <string name="organize_your_weekly_schedule_with_a_single_tap_and_stay_prepared">" Organize your weekly schedule with a single tap and stay prepared!"</string>
+    <string name="start">Start</string>
+    <string name="next">Next</string>
+    <string name="create_account">Create Account</string>
+    <string name="login">Login</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_with_google">Sign up with Google</string>
+    <string name="or_sign_with">Or Sign Up With</string>
+    <string name="login_with_google">Login With Google</string>
+    <string name="or_login_with">or Login With</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="star">Star</string>
+    <string name="week_plan">Week Plan</string>
+    <string name="meal_image">Meal Image</string>
+    <string name="meal_name">Meal Name</string>
+    <string name="meal_location">Meal Location</string>
+    <string name="hello">Welcome, </string>
+    <string name="area">Area</string>
+    <string name="category">Category</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="meal_description">Meal Description</string>
+    <string name="ingredient_img">https://www.themealdb.com/images/ingredients/%s-Small.png</string>
+    <string name="enter_meal_name">Enter meal name</string>
+    <string name="no_results_found">No results found</string>
+    <string name="your_star_meals">Your Star Meals</string>
+    <string name="add_to_calender">Add To Calender</string>
+    <string name="your_week_plan_meals">Your Week Plan Meals</string>
+    <string name="skip">Skip</string>
+    <string name="meal_ingredient">Meal Ingredient</string>
+    <string name="popular_meals">Popular Meals</string>
+    <string name="logout">Logout</string>
+    <string name="search_for_a_meal">Search for a meal</string>
+
+</resources>
